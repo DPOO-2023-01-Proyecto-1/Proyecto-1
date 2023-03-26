@@ -32,7 +32,8 @@ public class Servicio implements Item
 		// TODO Auto-generated method stub
 		return value;
 	}
-	public String getDescription() {
+	public String getDescription() // cambio
+	{
 		return description;
 	}
 
