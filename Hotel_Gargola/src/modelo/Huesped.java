@@ -1,5 +1,5 @@
 package modelo;
 
-public class Huesped {
+public class Huesped {//ensayo de commit
 
 }
