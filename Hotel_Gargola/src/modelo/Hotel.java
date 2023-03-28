@@ -17,18 +17,21 @@ import java.util.Scanner;
 import modelo.Habitacion;
 import modelo.Producto;
 import modelo.Servicio;
+import modelo.Reserva;
 
 public class Hotel 
 {
 	private static Map <Integer, Habitacion> mapaHabitaciones = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
 	private static Map <Integer, Producto> mapaProductos = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
 	private static Map <Integer, Servicio> mapaServicios = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
-	
+	private static Map <Integer, Reserva> mapaReservas = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
+
 	public static void cargarInfoHotel() throws FileNotFoundException, IOException
     {	
     	cargarHabitaciones();
     	cargarProductos();
     	cargarServicios();
+    	cargarReservas();
     }
 	
 	public static void cargarHabitaciones()  throws FileNotFoundException, IOException 
@@ -105,7 +108,7 @@ public class Hotel
 				mapaProductos.put(productId, producto);
 			}
 		}
-	System.out.println("Se cargaron los servicios");
+	System.out.println("Se cargaron los productos");
 	}
 	public static void cargarServicios() throws FileNotFoundException, IOException 
 	{// Función que va a crear un hash map de los Servicios que se van a ofrecer en el hotel. Se carga a partir de un archivo .txt que está en la carpeta de data
@@ -127,6 +130,42 @@ public class Hotel
 			}
 		}
 	System.out.println("Se cargaron los servicios");
+	}
+	public static void cargarReservas() throws FileNotFoundException, IOException 
+	{	
+		System.out.println("Se empezaron a cargar las reservas");
+		BufferedReader brReservas = new BufferedReader(new FileReader("./data/reservas.txt")); // archivo de servicios. cada linea es así: id;name;value;description
+		String linea = "";
+		System.out.println("Se empezaron a cargar las los servicios");
+		while((linea = brReservas.readLine()) != null)
+		{
+			String[] partes = linea.split(";"); //Separa la linea por los ;
+			int bookingId = Integer.parseInt(partes[0]);
+			String entryDate = partes[1];
+			String departureDate = partes[2];
+			String roomsIdString = partes[3]; //Aquí está la lista de los id de las habitaciones asociadas (todavía está en string)
+			String[] partesAssociatedRooms = roomsIdString.split(","); //aqui separa la lista de las habitaciones por comas
+			ArrayList <Integer> associatedRooms = new ArrayList<Integer>();
+			for (int i = 0;  i < partesAssociatedRooms.length; i++) // Este for lo que hace es agregar las habitaciones asociadas a la reserva en una lista en una lista. 
+			{	
+				associatedRooms.add(Integer.parseInt(partesAssociatedRooms[i]));
+			}
+			String guestListString = partes[4];
+			String[] partesGuestList = guestListString.split(",");
+			ArrayList <String> guestList = new ArrayList<String>();
+			for (int j = 0;  j < partesGuestList.length; j++)
+			{
+				guestList.add(partesGuestList[j]);
+			}
+			int associatedValue = Integer.parseInt(partes[5]);
+			Reserva reserva = mapaReservas.get(bookingId);
+			if (reserva == null)
+			{
+				reserva = new Reserva(bookingId, entryDate, departureDate, associatedRooms,guestList, associatedValue);
+				mapaReservas.put(null, reserva);
+			}
+		}
+		System.out.println("Se cargaron las reservas");
 	}
 }
 	
