@@ -1,0 +1,3 @@
+manuelito;1234;administrador
+andresito;567;recepcionista
+pepito;7474;empleado

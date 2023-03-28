@@ -18,6 +18,10 @@ import modelo.Habitacion;
 import modelo.Producto;
 import modelo.Servicio;
 import modelo.Reserva;
+import modelo.Usuario;
+import modelo.Administrador;
+import modelo.Empleado;
+import modelo.Recepcionista;
 
 public class Hotel 
 {
@@ -25,13 +29,14 @@ public class Hotel
 	private static Map <Integer, Producto> mapaProductos = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
 	private static Map <Integer, Servicio> mapaServicios = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
 	private static Map <Integer, Reserva> mapaReservas = new LinkedHashMap<>();//toca ensayar si si funciona el id en integer como key del hashmap
-
+	private static Map <String, Usuario> mapaUsuarios = new LinkedHashMap<>();//
 	public static void cargarInfoHotel() throws FileNotFoundException, IOException
     {	
     	cargarHabitaciones();
     	cargarProductos();
     	cargarServicios();
     	cargarReservas();
+    	cargarUsuarios();
     }
 	
 	public static void cargarHabitaciones()  throws FileNotFoundException, IOException 
@@ -166,6 +171,37 @@ public class Hotel
 			}
 		}
 		System.out.println("Se cargaron las reservas");
+	}
+	public static void cargarUsuarios() throws FileNotFoundException, IOException
+	{
+		BufferedReader brUsuarios = new BufferedReader(new FileReader("./data/usuarios.txt")); // archivo de servicios. cada linea es así: id;name;value;description
+		String linea = "";
+		System.out.println("Se empezaron a cargar los usuarios");
+		while((linea = brUsuarios.readLine()) != null)
+		{
+			String[] partes = linea.split(";"); //Separa la linea por los ;
+			String login = partes[0];
+			String password = partes[1];
+			String userType = partes[2];
+			Usuario usuario = mapaUsuarios.get(login);
+			if (usuario == null)
+			{
+				if (userType == "administrador") //Determina que tipo de usuario crear
+				{
+					usuario = new Administrador(login, password, userType);
+				}
+				else if (userType == "recepcionista")
+				{
+					usuario = new Recepcionista(login, password, userType);
+				}
+				else
+				{
+					usuario = new Empleado(login, password, userType); //si no es recepcionista ni admin pues es un empleado añañay
+				}
+				mapaUsuarios.put(login, usuario);
+			}
+		}
+		System.out.println("Se cargaron los usuarios");
 	}
 }
 	
