@@ -7,7 +7,7 @@ public class Producto implements Item
 	private String name;
 	private String locationRestrictions;
 	
-	public Producto(Integer productId,  String name, Integer value, String locationRestrictions)
+	public Producto(Integer productId,  Integer value, String name, String locationRestrictions)
 	{
 		this.productId = productId;
 		this.value = value;

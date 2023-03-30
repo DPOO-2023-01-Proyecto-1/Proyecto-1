@@ -109,7 +109,7 @@ public class Hotel
 			Producto producto = mapaProductos.get(productId);
 			if (producto==null)
 			{
-				producto = new Producto(productId,  productName, productValue, productRestrictions);
+				producto = new Producto(productId, productValue, productName, productRestrictions);
 				mapaProductos.put(productId, producto);
 			}
 		}

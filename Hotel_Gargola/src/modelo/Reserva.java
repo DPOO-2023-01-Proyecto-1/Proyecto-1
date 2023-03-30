@@ -22,6 +22,7 @@ public class Reserva
 	public String getDate()
 	{
 		String fechas_reservadas = entryDate+"-"+departureDate;
+		
 		return fechas_reservadas;
 	}
 	public Integer getAssociatedValue()

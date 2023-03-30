@@ -1,5 +1,10 @@
 package modelo;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Map;
+
 public abstract class Usuario 
 {
 	private String login;
@@ -27,4 +32,9 @@ public abstract class Usuario
 	{
 		return userType;
 	}
+	
+	
+	
+        
 }
+

@@ -17,9 +17,9 @@ import java.util.Scanner;
 public class Habitacion 
 {
 	private Integer roomId;
-	public Boolean occupancyStatus; //es public porque el admin puede cambiar eso añañay
+	public Boolean occupancyStatus; 
 	private ArrayList<String> availableServices;
-	private ArrayList<String> consumptionRecord;
+	public ArrayList<String> consumptionRecord;
 	private ArrayList<String> guestList;
 	private Integer valueByNight;
 	private Integer guestCapacity;
