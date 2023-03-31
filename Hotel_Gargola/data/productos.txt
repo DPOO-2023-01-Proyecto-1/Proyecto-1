@@ -1,0 +1,3 @@
+123;Coca Cola;4000;Restaurante y habitación
+234;Palito de queso;2500;Restaurante
+345;Cerveza;4500;Restaurante y habitación

@@ -1,0 +1,3 @@
+098;Masaje;40000;Un masaje relajante
+938;lavanderia;15000;La ropa sucia queda limpia
+674;corte de pelo;12000;Un corte de pelo empresarial
