@@ -17,7 +17,7 @@ public class Administrador extends Usuario {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void addItemRoom(String archivo, int idBuscado, String nuevoProducto, Map<String, Habitacion> habitaciones) {
+	public void addProductRoom(String archivo, int idBuscado, String nuevoProducto, Map<String, Habitacion> habitaciones) {
 		try {
 			// Abre el archivo para lectura y escritura
 			BufferedReader reader = new BufferedReader(new FileReader(archivo));
@@ -70,6 +70,60 @@ public class Administrador extends Usuario {
 		}
 
 	}
+	
+	public void addServiceRoom(String archivo, int idBuscado, String nuevoServicio, Map<String, Habitacion> habitaciones) {
+		try {
+			// Abre el archivo para lectura y escritura
+			BufferedReader reader = new BufferedReader(new FileReader(archivo));
+			FileWriter writer = new FileWriter(archivo, true);
+			String linea;
+			boolean encontrado = false;
+
+			// Lee cada línea del archivo
+			while ((linea = reader.readLine()) != null) {
+				// Divide la línea por el carácter ";" para obtener los elementos
+				String[] elementos = linea.split(";");
+				// Si el segundo elemento es el id buscado
+				if (Integer.parseInt(elementos[1]) == idBuscado) {
+					encontrado = true;
+
+					// Agrega el nuevo servicio al tercer elemento
+
+					if (elementos.length > 2 && !elementos[2].isEmpty()) {
+						elementos[2] += ", " + nuevoServicio;
+
+					}
+
+					else {
+						elementos[2] = nuevoServicio;
+					}
+					// Reemplaza la línea original por la línea actualizada
+					linea = String.join(";", elementos);
+
+					// Actualiza la habitación correspondiente en el HashMap
+					Habitacion habitacion = habitaciones.get(Integer.toString(idBuscado));
+					habitacion.getConsumptionRecord().add(nuevoServicio);
+					actualizarHabitacion(habitacion);
+				}
+				// Escribe la línea en el archivo
+				writer.write(linea + "\n");
+			}
+
+			// Si no se encontró el id buscado, lanza una excepción
+			if (!encontrado) {
+				throw new RuntimeException("No se encontró el id buscado.");
+			}
+
+			// Cierra el lector y escritor de archivos
+			reader.close();
+			writer.close();
+
+			System.out.println("Servicio agregado exitosamente.");
+		} catch (IOException e) {
+			System.out.println("Error al agregar el servicio: " + e.getMessage());
+		}
+
+	}
 
 	private void actualizarHabitacion(Habitacion habitacion) {
 		System.out.println("Habitación actualizada:");
@@ -77,7 +131,7 @@ public class Administrador extends Usuario {
 		System.out.println("Consumption record: " + habitacion.getConsumptionRecord());
 	}
 
-	public void deleteItemRoom(String id, String producto, String archivo, Map<String, Habitacion> habitaciones)
+	public void deleteProductRoom(String id, String producto, String archivo, Map<String, Habitacion> habitaciones)
 			throws IOException {
 		// Leer el archivo y guardar cada línea en un ArrayList
 
@@ -134,8 +188,66 @@ public class Administrador extends Usuario {
 		}
 		escritor.close();
 	}
+	
+	public void deleteServiceRoom(String id, String servicio, String archivo, Map<String, Habitacion> habitaciones)
+			throws IOException {
+		// Leer el archivo y guardar cada línea en un ArrayList
 
-	public void addItemCatalog(Map<Integer, Producto> products, Integer id, String name, Integer value, String textFile,
+		ArrayList<String> lineas = new ArrayList<>();
+		BufferedReader lector = new BufferedReader(new FileReader(archivo));
+		String linea;
+
+		while ((linea = lector.readLine()) != null)
+
+		{
+			lineas.add(linea);
+		}
+
+		lector.close();
+
+		// Buscar la línea correspondiente a la habitación con el ID dado
+
+		int indice = -1;
+		for (int i = 0; i < lineas.size(); i++) {
+			String[] partes = lineas.get(i).split(";");
+			if (partes[0].equals(id)) {
+				indice = i;
+				break;
+			}
+		}
+
+		// Si no se encontró la habitación, lanzar una excepción
+		if (indice == -1) {
+			throw new IllegalArgumentException("No se encontró una habitación con ID " + id);
+		}
+
+		// Obtener la habitación correspondiente y eliminar el servicio de su lista
+
+		Habitacion habitacion = habitaciones.get(id);
+		if (!habitacion.getConsumptionRecord().contains(servicio)) {
+
+			throw new IllegalArgumentException("La habitación con ID " + id + " no contiene el producto " + servicio);
+		}
+
+		habitacion.getConsumptionRecord().remove(servicio);
+		actualizarHabitacion(habitacion);
+
+		// Actualizar la línea correspondiente en el ArrayList
+
+		String[] partes = lineas.get(indice).split(";");
+		partes[2] = String.join(",", habitacion.getConsumptionRecord());
+		lineas.set(indice, String.join(";", partes));
+
+		// Escribir las líneas actualizadas en el archivo
+
+		BufferedWriter escritor = new BufferedWriter(new FileWriter(archivo));
+		for (String lineaActualizada : lineas) {
+			escritor.write(lineaActualizada + "\n");
+		}
+		escritor.close();
+	}
+
+	public void addProductCatalog(Map<Integer, Producto> products, Integer id, String name, Integer value, String textFile,
 			String locationRestrictions) {
 		// Crear objeto Product con los datos recibidos
 		Producto newProduct = new Producto(id, value, name, locationRestrictions);
@@ -152,8 +264,26 @@ public class Administrador extends Usuario {
 		}
 
 	}
+	
+	public void addServiceCatalog(Map<Integer, Producto> services, Integer id, String name, Integer value, String textFile,
+			String description) {
+		// Crear objeto Product con los datos recibidos
+		Producto newProduct = new Producto(id, value, name, description);
 
-	public void deleteItemCatalog(Map<Integer, Producto> products, Integer id, String textFile) {
+		// Agregar producto al Map
+		services.put(id, newProduct);
+
+		// Escribir datos en archivo de texto
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile, true))) {
+			writer.write(id + ";" + value + ";" + name + ";" + description);
+			writer.newLine();
+		} catch (IOException e) {
+			System.err.println("Error al escribir en archivo: " + e.getMessage());
+		}
+
+	}
+
+	public void deleteProductCatalog(Map<Integer, Producto> products, Integer id, String textFile) {
 		// Obtener el producto correspondiente al ID
 
 		Producto deletedProduct = products.get(id);
@@ -166,6 +296,47 @@ public class Administrador extends Usuario {
 			products.remove(id);
 
 			// Eliminar línea correspondiente al producto en el archivo de texto
+
+			try (BufferedReader reader = new BufferedReader(new FileReader(textFile));
+					BufferedWriter writer = new BufferedWriter(new FileWriter(textFile + ".temp"))) {
+				String currentLine;
+				while ((currentLine = reader.readLine()) != null) {
+					String[] fields = currentLine.split(";");
+					if (!fields[0].equals(String.valueOf(id))) {
+						writer.write(currentLine);
+						writer.newLine();
+					}
+				}
+			} catch (IOException e) {
+				System.err.println("Error al eliminar producto: " + e.getMessage());
+			}
+
+			// Renombrar archivo temporal y borrar el original
+
+			try {
+				java.nio.file.Files.move(java.nio.file.Paths.get(textFile + ".temp"), java.nio.file.Paths.get(textFile),
+						java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				System.err.println("Error al renombrar archivo temporal: " + e.getMessage());
+			}
+		} else {
+			System.out.println("El producto con ID " + id + " no existe en el Map.");
+		}
+	}
+	
+	public void deleteServiceCatalog(Map<Integer, Producto> services, Integer id, String textFile) {
+		// Obtener el Servicio correspondiente al ID
+
+		Producto deletedService = services.get(id);
+
+		// Si el Servicio existe en el Map
+
+		if (deletedService != null) {
+			// Eliminar Servicio del Map
+
+			services.remove(id);
+
+			// Eliminar línea correspondiente al Servicio en el archivo de texto
 
 			try (BufferedReader reader = new BufferedReader(new FileReader(textFile));
 					BufferedWriter writer = new BufferedWriter(new FileWriter(textFile + ".temp"))) {
