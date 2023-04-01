@@ -1,2 +1,10 @@
-101;false;masaje,musica,lavanderia;243452,422424,234243;;27000;3;doblete;0
-102;false;masaje,musica,lavanderia;coca cola, palitos de queso, postobon;Manuel, Santiago, Gargolita;27000;3;triple;100000
+101;false;200,201,204,207,209;;;27000;3;doble;0
+102;false;204,205,206,207,208,209;;;97000;3;triple;0
+103;false;202,203,206,208,210;;;50000;2;sencilla;0
+104;false;201,203,205,207,209;;;80000;2;doble;0
+105;false;201,203,204,207,210;;;45000;2;sencilla;0
+106;false;202,204,206,208,209,210;;;125000;5;suite;0
+107;false;201,204,205,208,209;;;70000;2;doble;0
+108;false;203,204,207,209,210;;;55000;2;sencilla;0
+109;false;201,204,205,206,209;;;90000;2;doble;0
+110;false;202,204,206,207,208,210;;;150000;4;suite;0

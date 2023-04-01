@@ -1,3 +1,11 @@
-098;Masaje;40000;Un masaje relajante
-938;lavanderia;15000;La ropa sucia queda limpia
-674;corte de pelo;12000;Un corte de pelo empresarial
+200;Masaje;40000;Un masaje relajante
+201;lavanderia;15000;La ropa sucia queda limpia
+202;corte de pelo;12000;Un corte de pelo empresarial
+203;Guia turistico;350000;Excelente guia turistico
+204;Servicio de habitaciones;15000;Servicio de entrega de alimentos y bebidas a la habitación del huésped
+205;Conserjería;0;Asistencia personalizada para reservas, recomendaciones de lugares turísticos, etc.
+206;Spa;100000;Servicios de masajes, tratamientos faciales y corporales, saunas, jacuzzis, etc.
+207;Gimnasio;0;Instalaciones para hacer ejercicio y mantenerse en forma durante la estancia en el hotel
+208;Piscina;0;Piscina para uso exclusivo de los huéspedes del hotel
+209;Servicio de limpieza diario;0;Limpieza y ordenamiento diario de la habitación del huésped durante su estadía en el hotel.
+210;Servicio de transporte con vehiculo blindado;2000000;Excelente, seguro y confiable servicio de transporte en vehiculos blindados.
