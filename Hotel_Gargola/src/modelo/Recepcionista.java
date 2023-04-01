@@ -14,7 +14,7 @@ public class Recepcionista extends Usuario {
 	{	//para generar el id de las reservas toca que entre el mapa para que se checkee que el id no esté creado ya
 		Random random = new Random();
 		Boolean checkearId = true;
-		int idGenerado = 0;
+		int idGenerado = 0; #cambios bonitos 
 		while (checkearId = true)
 		{
 			idGenerado = random.nextInt(1000);// aqui genera el id
