@@ -245,7 +245,7 @@ public class Aplicacion {
 				break;
 			case "empleado":
 				Empleado empleado = (Empleado)usuario;
-				System.out.println("Bienvenido administrador");
+				System.out.println("Bienvenido empleado");
 				
 				menu_empleado(scanner);
 				
