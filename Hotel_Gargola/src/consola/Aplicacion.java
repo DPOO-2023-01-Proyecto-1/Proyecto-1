@@ -13,6 +13,7 @@ import java.util.Map;
 import java.util.Scanner;
 
 import modelo.Administrador;
+import modelo.Empleado;
 import modelo.Hotel;
 import modelo.Usuario;
 
@@ -243,20 +244,79 @@ public class Aplicacion {
 					
 				break;
 			case "empleado":
-				System.out.println("Bienvenido empleado");
-				break;
+				Empleado empleado = (Empleado)usuario;
+				System.out.println("Bienvenido administrador");
+				
+				menu_empleado(scanner);
+				
+				System.out.println("");
+				
+				System.out.print("Seleccione una opción: ");
+
+				// Leer la entrada del usuario como una cadena
+				String seleccionStrEmpleado = scanner.nextLine();
+
+				// Convertir la cadena en un número entero, si es posible
+				int seleccionIntEmpleado = Integer.parseInt(seleccionStrEmpleado);
+				
+				// Procesar la opción seleccionada
+				switch (seleccionIntEmpleado) 
+				{
+				    case 1:
+				    	Hotel.mostrarProductos();
+				    	System.out.println("Ingrese el codigo del producto que desea agregar:");
+				    	
+				    	String codigoProducto = scanner.nextLine();
+				    	
+				    	System.out.println("Ingrese el codigo de la habitacion sobre la cual desea agregar el producto:");
+						
+						String codigoHabitacion = scanner.nextLine();
+						
+						int intCodigoHabitacion = Integer.parseInt(codigoHabitacion);
+						
+						String rutaArchivo = "./data/habitaciones.txt";
+						
+				        empleado.addProductRoom(rutaArchivo, intCodigoHabitacion, codigoProducto, hotel.getMapaHabitaciones());
+				        
+				        break;
+				           
+				    case 2:
+				    	
+				    	Hotel.mostrarServicios();
+				    	System.out.println("Ingrese el codigo del servicio que desea agregar:");
+				    	
+				    	String codigoServicio = scanner.nextLine();
+				    	
+				    	System.out.println("Ingrese el codigo de la habitacion sobre la cual desea agregar el servicio:");
+						
+						String codigoHabitacionServicio = scanner.nextLine();
+						
+						int intCodigoHabitacionServicio = Integer.parseInt(codigoHabitacionServicio);
+						
+						String rutaArchivoServicio = "./data/habitaciones.txt";
+						
+				        empleado.addServiceRoom(rutaArchivoServicio, intCodigoHabitacionServicio, codigoServicio, hotel.getMapaHabitaciones());
+				        
+				        break;
+				}
 			case "recepcionista":
 				System.out.println("Bienvenido recepcionista");
 				break;
 			default:
 				System.out.println("Tipo de usuario desconocido");
 				break;
+		
+			
+			}
+			
+			
+				
 			}
 		}
 			
 
 			
-	}
+	
 
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		Aplicacion consola = new Aplicacion();
@@ -278,5 +338,10 @@ public class Aplicacion {
 		
 		
 		
+	}
+	public void menu_empleado(Scanner scanner) {
+		System.out.println("Ingrese a partir de las siguientes opciones la accion que desea realizar\n");
+		System.out.println("(1)- Agregar un Producto a una habitacion - (Integer) codigo de la habitacion - (Integer) Codigo Producto");
+		System.out.println("(2)- Agregar un Servicio a una habitacion - (Integer) codigo de la habitacion - (Integer) Codigo Servicio");
 	}
 }
