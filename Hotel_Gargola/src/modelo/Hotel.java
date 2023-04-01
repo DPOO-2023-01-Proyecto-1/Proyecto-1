@@ -25,15 +25,13 @@ import modelo.Empleado;
 import modelo.Recepcionista;
 
 public class Hotel {
-	private static Map<Integer, Habitacion> mapaHabitaciones = new LinkedHashMap<>();// toca ensayar si si funciona el
-																						// id en integer como key del
-																						// hashmap
-	private static Map<Integer, Producto> mapaProductos = new LinkedHashMap<>();// toca ensayar si si funciona el id en
-																				// integer como key del hashmap
-	private static Map<Integer, Servicio> mapaServicios = new LinkedHashMap<>();// toca ensayar si si funciona el id en
-																				// integer como key del hashmap
-	private static Map<Integer, Reserva> mapaReservas = new LinkedHashMap<>();// toca ensayar si si funciona el id en
-																				// integer como key del hashmap
+	private static Map<Integer, Habitacion> mapaHabitaciones = new LinkedHashMap<>();// 
+	private static Map<Integer, Producto> mapaProductos = new LinkedHashMap<>();// 
+																				// 
+	private static Map<Integer, Servicio> mapaServicios = new LinkedHashMap<>();// 
+																				// 
+	private static Map<Integer, Reserva> mapaReservas = new LinkedHashMap<>();// 
+																				
 	private static Map<String, Usuario> mapaUsuarios = new LinkedHashMap<>();//
 
 	public static void cargarInfoHotel() throws FileNotFoundException, IOException {
