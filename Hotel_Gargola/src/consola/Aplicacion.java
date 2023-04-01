@@ -35,7 +35,7 @@ public class Aplicacion {
 		}
 	}
 
-	public void iniciar(Hotel hotel) {
+	public void iniciar(Hotel hotel) throws FileNotFoundException, IOException {
 		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.println("Bienvenido a la consola de usuarios");
 
@@ -88,7 +88,7 @@ public class Aplicacion {
 				switch (seleccionInt) 
 				{
 				    case 1:
-				    	
+				    	Hotel.mostrarProductos();
 				    	System.out.println("Ingrese el codigo del producto que desea agregar:");
 				    	
 				    	String codigoProducto = scanner.nextLine();
