@@ -8,7 +8,8 @@ public class Reserva
 	private String departureDate;
 	public ArrayList<Integer> associatedRooms;
 	private ArrayList<String> guestList;
-	private Integer associatedValue;
+	public Integer associatedValue;
+	
 	
 	public  Reserva(Integer bookingId, String entryDate, String departureDate, ArrayList<Integer> associatedRooms, ArrayList<String> guestList, Integer associatedValue)
 	{
