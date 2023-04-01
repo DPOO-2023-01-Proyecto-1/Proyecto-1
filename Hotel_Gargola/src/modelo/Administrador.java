@@ -332,10 +332,10 @@ public class Administrador extends Usuario {
 		}
 	}
 
-	public void deleteServiceCatalog(Map<Integer, Producto> services, Integer id, String textFile) {
+	public void deleteServiceCatalog(Map<Integer, Servicio> services, Integer id, String textFile) {
 		// Obtener el Servicio correspondiente al ID
 
-		Producto deletedService = services.get(id);
+		Servicio deletedService = services.get(id);
 
 		// Si el Servicio existe en el Map
 

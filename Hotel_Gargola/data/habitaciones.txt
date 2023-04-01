@@ -1,2 +1,2 @@
-101;false;masaje,musica,lavanderia;243452,422424;;27000;3;doblete;0
+101;false;masaje,musica,lavanderia;243452,422424,234243;;27000;3;doblete;0
 102;false;masaje,musica,lavanderia;coca cola, palitos de queso, postobon;Manuel, Santiago, Gargolita;27000;3;triple;100000

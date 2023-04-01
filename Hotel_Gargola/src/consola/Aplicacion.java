@@ -74,6 +74,8 @@ public class Aplicacion {
 				
 				menu_administrador(scanner);
 				
+				System.out.println("");
+				
 				System.out.print("Seleccione una opción: ");
 
 				// Leer la entrada del usuario como una cadena
@@ -142,11 +144,11 @@ public class Aplicacion {
 				        
 				    case 4:
 				    	
-				    	System.out.println("Ingrese el codigo del servicio que desea agregar:");
+				    	System.out.println("Ingrese el codigo del servicio que desea eliminar:");
 				    	
 				    	String codigoServicioEliminar = scanner.nextLine();
 				    	
-				    	System.out.println("Ingrese el codigo de la habitacion sobre la cual desea agregar el servicio:");
+				    	System.out.println("Ingrese el codigo de la habitacion sobre la cual desea eliminar el servicio:");
 						
 						String codigoHabitacionServicioEliminar = scanner.nextLine();
 						
@@ -157,8 +159,63 @@ public class Aplicacion {
 				        admin.removeServiceRoom(rutaArchivoServicioEliminar, intCodigoHabitacionServicioEliminar, codigoServicioEliminar, hotel.getMapaHabitaciones());
 				        
 				        break;
+				        
+				    case 5:
+				    	
+				    	System.out.println("Ingrese el nombre del servicio que desea agregar:");
+				    	
+				    case 6:
 				    	
 				    	
+				    	
+				    case 7:
+				    	
+				    	System.out.println("Ingrese e codigo del servicio que desea eliminar del catalogo de servicios:");
+				    	
+				    	String codigoServicioEliminarCatalogo = scanner.nextLine();
+				    	
+				    	int intCodigoServicioEliminarCatalogo = Integer.parseInt(codigoServicioEliminarCatalogo);
+				    	
+				    	String rutaServicioEliminarCatalogo = "./data/servicios.txt";
+				    	
+				    	admin.deleteServiceCatalog(hotel.getMapaServicios(), intCodigoServicioEliminarCatalogo, rutaServicioEliminarCatalogo);
+				    	
+				    	break;
+				    	
+				    case 8:
+				    	
+				    	System.out.println("Ingrese el codigo del producto que desea eliminar del catalogo de productos:");
+				    	
+				    	String codigoProductoEliminarCatalogo = scanner.nextLine();
+				    	
+				    	int intCodigoProductoEliminarCatalogo = Integer.parseInt(codigoProductoEliminarCatalogo);
+				    	
+				    	String rutaProductoEliminarCatalogo = "./data/servicios.txt";
+				    	
+				    	admin.deleteProductCatalog(hotel.getMapaProductos(),intCodigoProductoEliminarCatalogo, rutaProductoEliminarCatalogo);
+				    	
+				    	break;
+				    
+				    case 9:
+				    	
+				    	System.out.println("A continuacion se observa la lista de las reservas actuales:");
+				    	
+				    	System.out.println("");
+				    	
+				    	admin.getBookings(hotel.getMapaReservas());
+				    	
+				    	break;
+				    	
+				    case 10:
+				    	
+				    	System.out.println("A continuacion se observa la lista de los usuarios actuales:");
+				    	
+				    	System.out.println("");
+				    	
+				    	admin.getUsers(hotel.getMapaUsuarios());
+				    	
+				    	break;
+				 
 				        
 				    default:
 				        System.out.println("Opción inválida");
