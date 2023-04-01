@@ -107,6 +107,7 @@ public class Aplicacion {
 				           
 				    case 2:
 				    	
+				    	Hotel.mostrarServicios();
 				    	System.out.println("Ingrese el codigo del servicio que desea agregar:");
 				    	
 				    	String codigoServicio = scanner.nextLine();

@@ -254,13 +254,13 @@ public class Hotel {
 		}
 	}
 
-	public void mostrarServicios() throws FileNotFoundException, IOException {
-		BufferedReader brServicios = new BufferedReader(new FileReader("./data/productos.txt"));
+	public static void mostrarServicios() throws FileNotFoundException, IOException {
+		BufferedReader brServicios = new BufferedReader(new FileReader("./data/servicios.txt"));
 		String linea = "";
-		System.out.println("Se empezaron a cargar los productos");
 		while ((linea = brServicios.readLine()) != null) {
 			String[] partes = linea.split(";"); // Separa la linea por los ;
 			String paraMostrar = partes[0] + ". " + partes[1] + ". " + partes[2] + ". " + partes[3];
+			System.out.println(paraMostrar);
 		}
 	}
 	
