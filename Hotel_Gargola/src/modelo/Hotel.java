@@ -263,6 +263,7 @@ public class Hotel {
 			String paraMostrar = partes[0] + ". " + partes[1] + ". " + partes[2] + ". " + partes[3];
 		}
 	}
+	
 
 	public Map<String, Usuario> getMapaUsuarios()
 
