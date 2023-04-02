@@ -15,6 +15,7 @@ import java.util.Scanner;
 import modelo.Administrador;
 import modelo.Empleado;
 import modelo.Hotel;
+import modelo.Recepcionista;
 import modelo.Usuario;
 
 public class Aplicacion {
@@ -91,11 +92,13 @@ public class Aplicacion {
 				
 				System.out.println("Bienvenido administrador");
 				
-				menu_administrador(scanner);
+				menu_administrador();
 				
 				System.out.println("");
 				
 				System.out.print("Seleccione una opción: ");
+				
+				System.out.println("");
 
 				// Leer la entrada del usuario como una cadena
 				String seleccionStr = scanner.nextLine();
@@ -108,6 +111,9 @@ public class Aplicacion {
 				{
 				    case 1:
 				    	Hotel.mostrarProductos();
+				    	
+				    	System.out.println("");
+				    	
 				    	System.out.println("Ingrese el codigo del producto que desea agregar:");
 				    	
 				    	String codigoProducto = scanner.nextLine();
@@ -127,6 +133,9 @@ public class Aplicacion {
 				    case 2:
 				    	
 				    	Hotel.mostrarServicios();
+				    	
+				    	System.out.println("");
+				    	
 				    	System.out.println("Ingrese el codigo del servicio que desea agregar:");
 				    	
 				    	String codigoServicio = scanner.nextLine();
@@ -146,6 +155,10 @@ public class Aplicacion {
 				        
 				    case 3:
 				    	
+				    	Hotel.mostrarProductos();
+				    	
+				    	System.out.println("");
+				    	
 				    	System.out.println("Ingrese el codigo del producto que desea eliminar:");
 				    	
 				    	String codigoProductoEliminar = scanner.nextLine();
@@ -163,6 +176,10 @@ public class Aplicacion {
 				        break;
 				        
 				    case 4:
+				    	
+				    	Hotel.mostrarServicios();
+				    	
+				    	System.out.println("");
 				    	
 				    	System.out.println("Ingrese el codigo del servicio que desea eliminar:");
 				    	
@@ -182,13 +199,106 @@ public class Aplicacion {
 				        
 				    case 5:
 				    	
+				    	Hotel.mostrarServicios();
+				    	
+				    	System.out.println("");
+				    	
 				    	System.out.println("Ingrese el nombre del servicio que desea agregar:");
 				    	
+				    	String nombreServicioAgregar = scanner.nextLine();
+				    	
+				    	System.out.println("Ingrese el codigo del servicio que desea agregar:");
+				    	
+				    	String codigoServicioAgregar = scanner.nextLine();
+				    	
+				    	int intCodigoServicioAgregar = Integer.parseInt(codigoServicioAgregar);
+				    	
+				    	System.out.println("Ingrese el valor del servicio que desea agregar:");
+				    	
+				    	String valorServicioAgregar = scanner.nextLine();
+				    	
+				    	int intValorServicioAgregar = Integer.parseInt(valorServicioAgregar);
+				    	
+				    	String rutaServicioAgregar = "./data/servicios.txt";
+				    	
+				    	System.out.println("Ingrese la descripcion para el servicio:");
+				    	
+				    	String descripcionServicioAgregar = scanner.nextLine();
+				    	
+				    	admin.addServiceCatalog(hotel.getMapaServicios(), intCodigoServicioAgregar, nombreServicioAgregar, intValorServicioAgregar, rutaServicioAgregar,descripcionServicioAgregar);
+				    	
+				    	break;
+				    	
+				    
 				    case 6:
 				    	
 				    	
+				    	Hotel.mostrarProductos();
+				    	
+				    	System.out.println("");
+				    	
+				    	System.out.println("Ingrese el nombre del producto que desea agregar:");
+				    	
+				    	String nombreProductoAgregar = scanner.nextLine();
+				    	
+				    	System.out.println("Ingrese el codigo del producto que desea agregar:");
+				    	
+				    	String codigoProductoAgregar = scanner.nextLine();
+				    	
+				    	int intCodigoProductoAgregar = Integer.parseInt(codigoProductoAgregar);
+				    	
+				    	System.out.println("Ingrese el valor del producto que desea agregar:");
+				    	
+				    	String valorProductoAgregar = scanner.nextLine();
+				    	
+				    	int intValorProductoAgregar = Integer.parseInt(valorProductoAgregar);
+				    	
+				    	String rutaProductoAgregar = "./data/productos.txt";
+				    	
+				    	menu_restricciones();
+				    	
+				    	System.out.println("Ingrese la opcion que desea para las restricciones");
+				    	
+				    	String respuestaRestricciones = scanner.nextLine();
+				    	
+				    	if (respuestaRestricciones.equals("1")) {
+				    		
+				    		String restricciones = "Sin restriccion";
+				    		
+				    		admin.addProductCatalog(hotel.getMapaProductos(),intCodigoProductoAgregar, nombreProductoAgregar, intValorProductoAgregar, rutaProductoAgregar , restricciones);
+				    		
+				    	}
+				    	
+				    	else if (respuestaRestricciones.equals("2")) {
+				    		
+				    		String restricciones = "Habitacion";
+				    		
+				    		admin.addProductCatalog(hotel.getMapaProductos(),intCodigoProductoAgregar, nombreProductoAgregar, intValorProductoAgregar, rutaProductoAgregar , restricciones);
+				    		
+				    		
+				    	}
+				    	
+				    	else if (respuestaRestricciones.equals("3")) {
+				    		
+				    		String restricciones = "Restaurante";
+				    		
+				    		admin.addProductCatalog(hotel.getMapaProductos(),intCodigoProductoAgregar, nombreProductoAgregar, intValorProductoAgregar, rutaProductoAgregar , restricciones);
+				    		
+				    	}
+				    	
+				    	else {
+				    		
+				    		System.out.print("Opcion invalida para las restricciones");
+				    	}
+				    	
+				    	break;
+				    	
 				    	
 				    case 7:
+				    	
+				    	Hotel.mostrarServicios();
+				    	
+				    	System.out.println("");
 				    	
 				    	System.out.println("Ingrese e codigo del servicio que desea eliminar del catalogo de servicios:");
 				    	
@@ -203,6 +313,10 @@ public class Aplicacion {
 				    	break;
 				    	
 				    case 8:
+				    	
+				    	Hotel.mostrarProductos();
+				    	
+				    	System.out.println("");
 				    	
 				    	System.out.println("Ingrese el codigo del producto que desea eliminar del catalogo de productos:");
 				    	
@@ -243,11 +357,14 @@ public class Aplicacion {
 				}
 					
 				break;
+				
 			case "empleado":
+				
 				Empleado empleado = (Empleado)usuario;
+				
 				System.out.println("Bienvenido empleado");
 				
-				menu_empleado(scanner);
+				menu_empleado();
 				
 				System.out.println("");
 				
@@ -264,6 +381,7 @@ public class Aplicacion {
 				{
 				    case 1:
 				    	Hotel.mostrarProductos();
+				    	
 				    	System.out.println("Ingrese el codigo del producto que desea agregar:");
 				    	
 				    	String codigoProducto = scanner.nextLine();
@@ -283,6 +401,7 @@ public class Aplicacion {
 				    case 2:
 				    	
 				    	Hotel.mostrarServicios();
+				    	
 				    	System.out.println("Ingrese el codigo del servicio que desea agregar:");
 				    	
 				    	String codigoServicio = scanner.nextLine();
@@ -299,9 +418,36 @@ public class Aplicacion {
 				        
 				        break;
 				}
+				
 			case "recepcionista":
+				
+				Recepcionista recep = (Recepcionista) usuario;
+				
 				System.out.println("Bienvenido recepcionista");
+				
+				menu_recepcionista();
+				
+				System.out.println("");
+				
+				System.out.print("Seleccione una opción: ");
+				
+				String archivoRutaReservas = "./data/reservas.txt";
+				
+				String opcionRecepcionista = scanner.nextLine();
+				
+				int intOpcionRecepcionista = Integer.parseInt(opcionRecepcionista);
+				
+				switch(intOpcionRecepcionista) 
+				{
+					case 1:
+						
+						
+				}
+
+				
+				
 				break;
+				
 			default:
 				System.out.println("Tipo de usuario desconocido");
 				break;
@@ -323,7 +469,7 @@ public class Aplicacion {
 		consola.ejecutarAplicacion();
 	}
 	
-	public void menu_administrador(Scanner scanner) {
+	public void menu_administrador() {
 		System.out.println("Ingrese a partir de las siguientes opciones la accion que desea realizar\n");
 		System.out.println("(1)- Agregar un Producto a una habitacion - (Integer) codigo de la habitacion - (Integer) Codigo Producto");
 		System.out.println("(2)- Agregar un Servicio a una habitacion - (Integer) codigo de la habitacion - (Integer) Codigo Servicio");
@@ -339,9 +485,31 @@ public class Aplicacion {
 		
 		
 	}
-	public void menu_empleado(Scanner scanner) {
+	
+	public void menu_empleado() {
 		System.out.println("Ingrese a partir de las siguientes opciones la accion que desea realizar\n");
 		System.out.println("(1)- Agregar un Producto a una habitacion - (Integer) codigo de la habitacion - (Integer) Codigo Producto");
 		System.out.println("(2)- Agregar un Servicio a una habitacion - (Integer) codigo de la habitacion - (Integer) Codigo Servicio");
 	}
+	
+	public void menu_restricciones() {
+		
+		System.out.println("(1)- Sin restricciones");
+		System.out.println("(2)- Restriccion Habitacion");
+		System.out.println("(3)- Restriccion Restaurante");
+		
+	}
+	
+	public void menu_recepcionista() {
+		
+		System.out.println("Ingrese a partir de las siguientes opciones la accion que desea realizar\n");
+		System.out.println("(1)- Crear una reserva (Check-In)");
+		System.out.println("(2)- Cerrar una reserva (Check-Out)");
+		System.out.println("(3)- Modificar una reserva");
+		System.out.println("(4)- Obtener la lista de reservas activas");
+		
+		
+		
+	}
+
 }

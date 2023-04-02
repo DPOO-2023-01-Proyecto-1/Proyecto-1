@@ -131,6 +131,7 @@ public class Recepcionista extends Usuario {
 	            e.printStackTrace();
 	        }
 	    }
+	
 	public ArrayList<Reserva> getBookingsList() {
         ArrayList<Reserva> bookingsList = new ArrayList<>();
 

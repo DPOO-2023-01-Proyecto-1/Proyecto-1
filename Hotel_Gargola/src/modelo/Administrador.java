@@ -265,31 +265,36 @@ public class Administrador extends Usuario {
 
 		// Escribir datos en archivo de texto
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile, true))) {
-			writer.write(id + ";" + value + ";" + name + ";" + locationRestrictions);
 			writer.newLine();
+			writer.write(id + ";" + value + ";" + name + ";" + locationRestrictions);
+			System.out.println("Producto agregado existosamente");
+			
 		} catch (IOException e) {
 			System.err.println("Error al escribir en archivo: " + e.getMessage());
 		}
 
 	}
 
-	public void addServiceCatalog(Map<Integer, Producto> services, Integer id, String name, Integer value,
+	public void addServiceCatalog(Map<Integer, Servicio> services, Integer id, String name, Integer value,
 			String textFile, String description) {
 		// Crear objeto Product con los datos recibidos
-		Producto newProduct = new Producto(id, value, name, description);
+		Servicio newService = new Servicio(id, name, value, description);
 
 		// Agregar producto al Map
-		services.put(id, newProduct);
+		services.put(id, newService);
 
 		// Escribir datos en archivo de texto
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile, true))) {
-			writer.write(id + ";" + value + ";" + name + ";" + description);
 			writer.newLine();
+			writer.write(id + ";" + value + ";" + name + ";" + description);
+			System.out.println("Servicio agregado existosamente");
+			
 		} catch (IOException e) {
 			System.err.println("Error al escribir en archivo: " + e.getMessage());
 		}
 
 	}
+
 
 	public void deleteProductCatalog(Map<Integer, Producto> products, Integer id, String textFile) {
 		// Obtener el producto correspondiente al ID
