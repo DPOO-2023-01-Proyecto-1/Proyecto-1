@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Scanner;
 import modelo.Administrador;
 import modelo.Empleado;
 import modelo.Hotel;
+import modelo.Huesped;
 import modelo.Recepcionista;
 import modelo.Usuario;
 
@@ -41,9 +43,9 @@ public class Aplicacion {
 		try (Scanner scanner = new Scanner(System.in)) {
 			System.out.println("Bienvenido a la consola de usuarios");
 
-			// Pedir login al usuario
+		
 			System.out.print("Ingrese su login: ");
-			String login = scanner.nextLine(); //se comentó esto para ensayar
+			String login = scanner.nextLine(); 
 			Usuario usuario = hotel.getMapaUsuarios().get(login);
 			
 			Boolean continuacion = true;
@@ -441,6 +443,76 @@ public class Aplicacion {
 				{
 					case 1:
 						
+						int bookingId = recep.generateID();
+						
+						System.out.println("Ingrese el numero de personas que se van a hospedar:");
+						
+						String numeroPersonasReserva = scanner.nextLine();
+						
+						int intNumeroPersonasReserva = Integer.parseInt(numeroPersonasReserva);
+					    
+						int i = 0;
+						
+						ArrayList<String> huespedes = new ArrayList<>();
+						
+					    while(i < intNumeroPersonasReserva) {
+					    	
+					    	
+					      System.out.println("Ingrese el nombre del huesped:");
+					      
+					      String nombreHuesped = scanner.nextLine();
+					      
+					      System.out.println("Ingrese la edad del huesped:");
+					      
+					      String edadHuesped = scanner.nextLine();
+					      
+					      int intEdadHuesped = Integer.parseInt(edadHuesped);
+					      
+					      System.out.println("Ingrese el correo electronico del huesped");
+					      
+					      String correoHuesped = scanner.nextLine();
+					      
+					      int codigoHuesped = recep.generateID();
+					      
+					      String archivoRutaHuespedes = "./data/huespedes.txt";
+					      
+					      Huesped huesped = recep.crearHuesped(nombreHuesped, intEdadHuesped, correoHuesped, archivoRutaHuespedes ,codigoHuesped );
+					      
+					      String stringGuestId = String.valueOf(huesped.getGuestID());
+					      
+					      huespedes.add(stringGuestId);
+					      
+					      i++;
+					    }
+					    
+					    System.out.println("Ingrese la fecha de comienzo de la reserva DD-MM-AAAA");
+					    
+					    String entryDate = scanner.nextLine();
+					    
+					    System.out.println("Ingrese la fecha de salida de la reserva DD-MM-AAAA");
+					    
+					    String departureDate = scanner.nextLine();
+					    
+					    int associatedValue = 0;
+					    
+					    recep.imprimirHabitacionesDisponiblesPorCapacidad(intNumeroPersonasReserva, hotel.getMapaHabitaciones());
+					    
+					    System.out.println("Ingrese los codigos de las habitaciones que desea asociar, separandolas por comas en caso de que haya mas de una:");
+					    
+					    String habitacionesAsociadasDisponibles = scanner.nextLine();
+					    
+					    String[] listaHabitacionesSeleccionadas = habitacionesAsociadasDisponibles.split(",");
+					    
+					    ArrayList<Integer> habitacionesAsociadas = recep.convertirListaStringAInt(listaHabitacionesSeleccionadas);
+					    
+						recep.checkIn(bookingId, entryDate, departureDate, habitacionesAsociadas, huespedes, associatedValue, archivoRutaReservas);
+						
+						break;
+						
+						
+					case 2:
+						
+						
 						
 				}
 
@@ -464,6 +536,7 @@ public class Aplicacion {
 			
 	
 
+
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		Aplicacion consola = new Aplicacion();
 		consola.ejecutarAplicacion();
@@ -481,7 +554,6 @@ public class Aplicacion {
 		System.out.println("(8)- Eliminar un Producto al catalogo de productos - (Integer) codigo del producto");
 		System.out.println("(9)- Obtener la lista de reservas actuales");
 		System.out.println("(10)- Obtener la lista de usuarios actuales");
-		
 		
 		
 	}

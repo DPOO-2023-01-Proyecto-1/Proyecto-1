@@ -26,6 +26,15 @@ public class Reserva
 		
 		return fechas_reservadas;
 	}
+	public String getEntryDate() {
+		
+		return entryDate;
+	}
+	public String getDepartureDate() {
+		
+		return departureDate;
+		
+	}
 	public Integer getAssociatedValue()
 	{
 		return associatedValue;

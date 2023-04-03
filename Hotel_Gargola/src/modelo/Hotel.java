@@ -184,7 +184,7 @@ public class Hotel {
 				String entryDate = partes[1];
 				String departureDate = partes[2];
 				String roomsIdString = partes[3]; // Aquí está la lista de los id de las habitaciones asociadas (todavía
-													// está en string)
+				roomsIdString = roomsIdString.replaceAll("\\[", "").replaceAll("\\]", "").replaceAll("\\s+",""); // Elimina los corchetes							// está en string)
 				String[] partesAssociatedRooms = roomsIdString.split(","); // aqui separa la lista de las habitaciones
 																			// por comas
 				ArrayList<Integer> associatedRooms = new ArrayList<Integer>();
