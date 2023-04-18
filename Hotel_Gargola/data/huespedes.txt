@@ -1,2 +1,9 @@
 84,manuel ito,98,manuel.ito@uniandes.edu.co,0,0
 597,manuel ito 2,67,dafafafa,0,0
+938;aña;3;m@sos;0;0
+958;andres;14;aaaaaa@uniandes.edu.co;0;0
+948;mario;23;wert@uniandes.com;0;0
+728;manuek;20;manuel123@uniandes.com;0;0
+837;manuek;23;gargolita@uniandes.com;0;0
+626;manuel;23;manuelito@uniandes.com;0;0
+624;manuel;12;manuelito12@uniandes.com;0;0

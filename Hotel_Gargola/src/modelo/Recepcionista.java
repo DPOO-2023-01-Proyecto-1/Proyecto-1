@@ -170,16 +170,24 @@ public class Recepcionista extends Usuario {
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
             String line;
             while ((line = br.readLine()) != null) {
-                String[] bookingData = line.split(",");
+                String[] bookingData = line.split(";");
                 Integer bookingId = Integer.parseInt(bookingData[0]);
                 String entryDate = bookingData[1];
                 String departureDate = bookingData[2];
                 ArrayList<Integer> associatedRooms = new ArrayList<>();
-                for (String roomId : bookingData[3].split("-")) {
+                String idsTemp=bookingData[3];
+                idsTemp=idsTemp.replace("[", "");
+                idsTemp=idsTemp.replace("]", "");
+                idsTemp=idsTemp.replace(" ", "");
+                for (String roomId : idsTemp.split(",")) {
                     associatedRooms.add(Integer.parseInt(roomId));
                 }
                 ArrayList<String> guestList = new ArrayList<>();
-                for (String guestName : bookingData[4].split("-")) {
+                String guesTemp=bookingData[4];
+                guesTemp=guesTemp.replace("[", "");
+                guesTemp=guesTemp.replace("]", "");
+                guesTemp=guesTemp.replace(" ", "");
+                for (String guestName : guesTemp.split("-")) {
                     guestList.add(guestName);
                 }
                 Integer associatedValue = Integer.parseInt(bookingData[5]);
