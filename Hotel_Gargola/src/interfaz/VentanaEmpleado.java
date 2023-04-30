@@ -56,6 +56,11 @@ public class VentanaEmpleado extends JFrame implements ActionListener {
 			VentanaAgregarProductoRoom vAddProductRoom = new VentanaAgregarProductoRoom(this);
 			frame.setVisible(false);
 		}
+		if (e.getSource() == bAddServicioRoom) 
+		{
+			VentanaAgregarServicioRoom vAddServicioRoom = new VentanaAgregarServicioRoom(this);
+			frame.setVisible(false);
+		}
 		
 		
 		
