@@ -27,17 +27,20 @@ public class VentanaAgregarProductoRoom extends JFrame implements ActionListener
 		
 		indiqueCodigo.setBounds(0,0,200,100);
 		regresar =  new JButton("Regresar");
+		
+		
+		//---------ACTIONS LISTENERS-----------//
+		regresar.addActionListener(this);
 	
 		codigoHabitacion = new JTextField();
 		
-		
+		//--------------ADDERS----------//
 		frame.add(indiqueCodigo);
 		frame.add(codigoHabitacion);
 		frame.add(regresar, BorderLayout.SOUTH);
 		
 		
-		//---------ACTIONS LISTENERS-----------//
-		regresar.addActionListener(this);
+		
 		
 		frame.setVisible(true);
 	}

@@ -47,7 +47,6 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		panelBotones.add(bAgregarHabitacion);
 		panelBotones.add(bAddProductoCat);
 		panelBotones.add(bAddServicioCat);
-		//se quitaron agregar producto y servicio a la habitación
 		panelBotones.add(bAgregarUsuario);
 		
 		//----AGREGA AL FRAME-----//
@@ -64,16 +63,23 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==bAgregarHabitacion)
 		{
-			
+			VentanaAgregarHabitacion vAgregarHabitacion = new VentanaAgregarHabitacion(this);
+			frame.setVisible(false);
 		}
-		if (e.getSource() == bAddProductoRoom) 
+		if (e.getSource() == bAddProductoCat) 
 		{
-			//VentanaAgregarProductoRoom vAddProductRoom = new VentanaAgregarProductoRoom(this);
-			//frame.setVisible(false);
+			VentanaAgregarProductoCatalogo vAgregarProductoCatalogo = new VentanaAgregarProductoCatalogo(this);
+			frame.setVisible(false);
 		}
-		if (e.getSource() == bAddServicioRoom) 
+		if (e.getSource() == bAddServicioCat) 
 		{
-			
+			VentanaAgregarServicioCatalogo vAgregarServicioCatalogo = new VentanaAgregarServicioCatalogo(this);
+			frame.setVisible(false);
+		}
+		if (e.getSource() == bAgregarUsuario) 
+		{
+			VentanaAgregarUsuario vAgregarUsuario = new VentanaAgregarUsuario(this);
+			frame.setVisible(false);
 		}
 		
 		

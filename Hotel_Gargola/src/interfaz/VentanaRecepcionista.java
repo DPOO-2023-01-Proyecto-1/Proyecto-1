@@ -60,6 +60,35 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
+		if (e.getSource()==hacerCheckIn) 
+		{
+			VentanaCheckIn vCheckIn = new VentanaCheckIn(this);
+			frame.setVisible(false);
+		}
+		if (e.getSource()==hacerCheckOut) 
+		{
+			VentanaCheckOut vCheckOut = new VentanaCheckOut(this);
+			frame.setVisible(false);
+		}
+		if (e.getSource()==hacerReserva) 
+		{
+			VentanaHacerReserva vHacerReserva = new VentanaHacerReserva(this);
+			frame.setVisible(false);
+		}
+		if (e.getSource()==listaDeReservas) 
+		{
+			VentanaListaDeReservas vListaDeReservas = new VentanaListaDeReservas(this);
+			frame.setVisible(false);
+		}
+		
+		
+	}
+	
+	//--------RETURNERS-------------//
+	
+	public JFrame getFrameRecepcionista()
+	{
+		return frame;
 	}
 	
 
