@@ -30,7 +30,7 @@ public class Aplicacion {
 
 		try {
 			Hotel.cargarInfoHotel();
-			iniciar(hotel);
+			//iniciar(hotel);
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: el archivo no se encontró.");
 		} catch (IOException e) {
@@ -537,10 +537,10 @@ public class Aplicacion {
 	
 
 
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		Aplicacion consola = new Aplicacion();
-		consola.ejecutarAplicacion();
-	}
+	//public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+		//Aplicacion consola = new Aplicacion();
+		//consola.ejecutarAplicacion();
+	//}
 	
 	public void menu_administrador() {
 		System.out.println("Ingrese a partir de las siguientes opciones la accion que desea realizar\n");
