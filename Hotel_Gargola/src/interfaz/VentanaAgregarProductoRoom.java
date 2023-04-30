@@ -1,28 +1,43 @@
 package interfaz;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class VentanaAgregarProductoRoom extends JFrame implements ActionListener {
 	JFrame frame = new JFrame();
 	JButton regresar;
-	VentanaAdministrador vAdmin1;
-	VentanaAgregarProductoRoom(VentanaAdministrador vAdmin)
+	VentanaEmpleado vEmpleado1;
+	JTextField codigoHabitacion;
+	JLabel indiqueCodigo;
+	VentanaAgregarProductoRoom(VentanaEmpleado vEmpleado)
 	{	
-		vAdmin1 = vAdmin;
+		vEmpleado1 = vEmpleado;
 		frame.setTitle("Agregar Producto Habitación");
 		frame.setSize(new Dimension(750,750));
+		//--------CUADRAR LABEL---------//
+		indiqueCodigo = new JLabel();
+		indiqueCodigo.setText("Ingrese la habitación");
 		
+		indiqueCodigo.setBounds(0,0,200,100);
 		regresar =  new JButton("Regresar");
+	
+		codigoHabitacion = new JTextField();
+		
+		
+		frame.add(indiqueCodigo);
+		frame.add(codigoHabitacion);
+		frame.add(regresar, BorderLayout.SOUTH);
+		
+		
+		//---------ACTIONS LISTENERS-----------//
 		regresar.addActionListener(this);
-		
-		
-		frame.add(regresar);
-		
 		
 		frame.setVisible(true);
 	}
@@ -32,7 +47,7 @@ public class VentanaAgregarProductoRoom extends JFrame implements ActionListener
 		if (e.getSource()==regresar)
 		{	
 			
-			vAdmin1.getFrameAdmin().setVisible(true);
+			vEmpleado1.getFrameEmpleado().setVisible(true);
 			frame.dispose();
 		}
 		

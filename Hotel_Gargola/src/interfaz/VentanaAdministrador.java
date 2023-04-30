@@ -27,7 +27,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		frame.setTitle("Ventana Administrador");
 		panelBotones.setLayout(new GridLayout(2,3));
 		panelBotones.setBounds(375, 375, 300, 200); //creo que esto no está haciendo ni mierda
-		
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		//----- INICIA BOTONES PANEL-------//
 		bAgregarHabitacion = new JButton("Nueva Habitacion");
 		bAddProductoCat= new JButton("Nuevo Producto");
@@ -37,7 +37,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		bAgregarUsuario= new JButton("Nuevo Usuario");
 		//------ADDS ACTION LISTENER BOTONES---------//
 		bAgregarHabitacion.addActionListener(this);
-		bAddProductoCat.addActionListener(this);
+		bAddProductoRoom= new JButton("Agregar Producto");
+		bAddServicioRoom= new JButton("Agregar Servicio");bAddProductoCat.addActionListener(this);
 		bAddServicioCat.addActionListener(this);
 		bAddProductoRoom.addActionListener(this);
 		bAddServicioRoom.addActionListener(this);
@@ -46,8 +47,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		panelBotones.add(bAgregarHabitacion);
 		panelBotones.add(bAddProductoCat);
 		panelBotones.add(bAddServicioCat);
-		panelBotones.add(bAddProductoRoom);
-		panelBotones.add(bAddServicioRoom);
+		//se quitaron agregar producto y servicio a la habitación
 		panelBotones.add(bAgregarUsuario);
 		
 		//----AGREGA AL FRAME-----//
@@ -68,8 +68,8 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		}
 		if (e.getSource() == bAddProductoRoom) 
 		{
-			VentanaAgregarProductoRoom vAddProductRoom = new VentanaAgregarProductoRoom(this);
-			frame.setVisible(false);
+			//VentanaAgregarProductoRoom vAddProductRoom = new VentanaAgregarProductoRoom(this);
+			//frame.setVisible(false);
 		}
 		if (e.getSource() == bAddServicioRoom) 
 		{
