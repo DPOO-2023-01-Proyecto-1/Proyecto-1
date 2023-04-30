@@ -84,20 +84,22 @@ public class PanelLogin extends JPanel implements ActionListener
 				else
 				{
 					String tipoUsuario = usuario.getUserType();
-					System.out.println(tipoUsuario);
+					
 					if(tipoUsuario.equals("administrador") )
 					{
-						System.out.println("después sale ventana de admin");
+						
 						VentanaAdministrador vAdmin = new VentanaAdministrador();
-						vInicio.setVisible(false);;
+						vInicio.setVisible(false);
 					}
 					else if(tipoUsuario.equals("recepcionista"))
 					{
-						
+						VentanaRecepcionista vRecepcionista = new VentanaRecepcionista();
+						vInicio.setVisible(false);
 					}
 					else
 					{
-						
+						VentanaEmpleado vEmpleado = new VentanaEmpleado();
+						vInicio.setVisible(false);
 					}
 				}
 				
