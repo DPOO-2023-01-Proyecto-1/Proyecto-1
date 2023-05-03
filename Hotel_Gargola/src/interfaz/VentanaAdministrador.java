@@ -32,16 +32,11 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		bAgregarHabitacion = new JButton("Nueva Habitacion");
 		bAddProductoCat= new JButton("Nuevo Producto");
 		bAddServicioCat= new JButton("Nuevo Servicio");
-		bAddProductoRoom= new JButton("Agregar Producto");
-		bAddServicioRoom= new JButton("Agregar Servicio");
 		bAgregarUsuario= new JButton("Nuevo Usuario");
 		//------ADDS ACTION LISTENER BOTONES---------//
 		bAgregarHabitacion.addActionListener(this);
-		bAddProductoRoom= new JButton("Agregar Producto");
-		bAddServicioRoom= new JButton("Agregar Servicio");bAddProductoCat.addActionListener(this);
 		bAddServicioCat.addActionListener(this);
-		bAddProductoRoom.addActionListener(this);
-		bAddServicioRoom.addActionListener(this);
+		bAddProductoCat.addActionListener(this);
 		bAgregarUsuario.addActionListener(this);
 		//------AGREGA AL PANEL-------//
 		panelBotones.add(bAgregarHabitacion);
@@ -52,7 +47,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		//----AGREGA AL FRAME-----//
 		frame.add(labelBienvenida, BorderLayout.NORTH);
 		frame.add(panelBotones, BorderLayout.CENTER);
-		frame.add(new JButton("Pruebita aña"), BorderLayout.SOUTH);
+		frame.add(new JButton("Cerrar"), BorderLayout.SOUTH);
 		
 		
 		
