@@ -1,4 +1,4 @@
-package modelo;
+	package modelo;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -63,7 +63,7 @@ public class Recepcionista extends Usuario {
         }
     }
 	
-	public void checkIn(Integer bookingId, String entryDate, String departureDate, ArrayList<Integer> associatedRooms, ArrayList<String> guestList, Integer associatedValue, String Archivo) {
+	public static void checkIn(Integer bookingId, String entryDate, String departureDate, ArrayList<Integer> associatedRooms, ArrayList<String> guestList, Integer associatedValue, String Archivo) {
 		// Verificar si las habitaciones ya están reservadas para las fechas de entrada y salida
 		ArrayList<Reserva> reservas = getBookingsList(Archivo);
 	    for (Reserva r : reservas) {
@@ -164,7 +164,7 @@ public class Recepcionista extends Usuario {
 	    }
 	}
 
-	public ArrayList<Reserva> getBookingsList(String archivo) {
+	public static ArrayList<Reserva> getBookingsList(String archivo) {
         ArrayList<Reserva> bookingsList = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(archivo))) {
