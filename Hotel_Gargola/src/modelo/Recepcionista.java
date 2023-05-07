@@ -222,7 +222,7 @@ public class Recepcionista extends Usuario {
 	}
 
 	
-	public int generateID() {
+	public static int generateID() {
 	    String chars = "0123456789";
 	    StringBuilder sb = new StringBuilder();
 	    Random random = new Random();
