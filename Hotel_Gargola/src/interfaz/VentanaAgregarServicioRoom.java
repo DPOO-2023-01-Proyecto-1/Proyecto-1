@@ -119,16 +119,13 @@ public class VentanaAgregarServicioRoom extends JFrame implements ActionListener
 				}
 				else 
 				{
-					
-				String rutaArchivo = "./data/habitaciones.txt";
-				String linea = serviciosDisponibles.getSelectedItem().toString();
-				String[] partes = linea.split(";");
-				String codigoProducto = partes[0];
-		        empleado.addServiceRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
+					String rutaArchivo = "./data/habitaciones.txt";
+					String linea = serviciosDisponibles.getSelectedItem().toString();
+					String[] partes = linea.split(";");
+					String codigoProducto = partes[0];
+			        empleado.addServiceRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
 				}
 			}
-			
-			
 		}
 	}
 
