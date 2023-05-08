@@ -275,12 +275,12 @@ public class Hotel {
 
 	}
 
-	public Map<Integer, Servicio> getMapaServicios() {
+	public static Map<Integer, Servicio> getMapaServicios() {
 		return mapaServicios;
 
 	}
 
-	public Map<Integer, Producto> getMapaProductos() {
+	public static Map<Integer, Producto> getMapaProductos() {
 		return mapaProductos;
 
 	}

@@ -255,7 +255,7 @@ public class Administrador extends Usuario {
 		}
 	}
 
-	public void addProductCatalog(Map<Integer, Producto> products, Integer id, String name, Integer value,
+	public static void addProductCatalog(Map<Integer, Producto> products, Integer id, String name, Integer value,
 			String textFile, String locationRestrictions) {
 		// Crear objeto Product con los datos recibidos
 		Producto newProduct = new Producto(id, value, name, locationRestrictions);
@@ -275,7 +275,7 @@ public class Administrador extends Usuario {
 
 	}
 
-	public void addServiceCatalog(Map<Integer, Servicio> services, Integer id, String name, Integer value,
+	public static void addServiceCatalog(Map<Integer, Servicio> services, Integer id, String name, Integer value,
 			String textFile, String description) {
 		// Crear objeto Product con los datos recibidos
 		Servicio newService = new Servicio(id, name, value, description);
