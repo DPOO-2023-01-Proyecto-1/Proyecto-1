@@ -31,6 +31,7 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 		vAdmin = vAdmin1;
 		frame.setTitle("Agregar Servicio A Catalogo");
 		frame.setSize(new Dimension(750, 750));
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 		JPanel Panel = new JPanel(new GridLayout(4, 2));
 

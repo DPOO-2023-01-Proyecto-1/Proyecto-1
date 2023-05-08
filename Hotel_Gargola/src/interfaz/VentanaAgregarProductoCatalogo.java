@@ -39,6 +39,8 @@ public class VentanaAgregarProductoCatalogo extends JFrame implements ActionList
 
 		JPanel Panel = new JPanel(new GridLayout(4, 2));
 
+		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+
 		Panel.add(new JLabel("Product Name"));
 		NameNewProduct = new JTextField();
 		Panel.add(NameNewProduct);
