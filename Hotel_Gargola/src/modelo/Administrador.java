@@ -266,7 +266,7 @@ public class Administrador extends Usuario {
 		// Escribir datos en archivo de texto
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile, true))) {
 			writer.newLine();
-			writer.write(id + ";" + value + ";" + name + ";" + locationRestrictions);
+			writer.write(id + ";" + name + ";" + value + ";" + locationRestrictions);
 			System.out.println("Producto agregado existosamente");
 			
 		} catch (IOException e) {
@@ -286,7 +286,7 @@ public class Administrador extends Usuario {
 		// Escribir datos en archivo de texto
 		try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile, true))) {
 			writer.newLine();
-			writer.write(id + ";" + value + ";" + name + ";" + description);
+			writer.write(id + ";" + name + ";" + value + ";" + description);
 			System.out.println("Servicio agregado existosamente");
 			
 		} catch (IOException e) {

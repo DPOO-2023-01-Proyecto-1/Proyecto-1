@@ -16,7 +16,7 @@ public class Empleado extends Usuario
 	}
 	
 	
-	public void addProductRoom(String archivo, int idBuscado, String nuevoProducto,
+	public static void addProductRoom(String archivo, int idBuscado, String nuevoProducto,
 			Map<Integer, Habitacion> habitaciones) {
 		try {
 			// Lee todas las lineas del archivo en una lista
@@ -46,7 +46,7 @@ public class Empleado extends Usuario
 					// Actualiza la habitación correspondiente en el HashMap
 					Habitacion habitacion = habitaciones.get(idBuscado);
 					habitacion.getConsumptionRecord().add(nuevoProducto);
-					actualizarHabitacion(habitacion);
+					
 
 					break; // Termina el bucle porque ya se actualizó la línea correspondiente
 				}

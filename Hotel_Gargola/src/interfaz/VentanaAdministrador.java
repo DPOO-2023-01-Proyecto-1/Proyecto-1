@@ -47,7 +47,7 @@ public class VentanaAdministrador extends JFrame implements ActionListener {
 		//----AGREGA AL FRAME-----//
 		frame.add(labelBienvenida, BorderLayout.NORTH);
 		frame.add(panelBotones, BorderLayout.CENTER);
-		frame.add(new JButton("Cerrar"), BorderLayout.SOUTH);
+		
 		
 		
 		

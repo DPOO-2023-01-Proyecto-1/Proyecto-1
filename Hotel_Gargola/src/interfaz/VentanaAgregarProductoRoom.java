@@ -37,7 +37,6 @@ public class VentanaAgregarProductoRoom extends JFrame implements ActionListener
 	JComboBox <String> productosDisponibles; //será que cambio a prdocutto?
 	JLabel indiqueCodigo;
 	JButton agregarProducto;
-	Empleado empleado = new Empleado("pepito","asdf","empleado");
 	VentanaAgregarProductoRoom(VentanaEmpleado vEmpleado)
 	{	
 		
@@ -128,7 +127,7 @@ public class VentanaAgregarProductoRoom extends JFrame implements ActionListener
 				String linea = productosDisponibles.getSelectedItem().toString();
 				String[] partes = linea.split(";");
 				String codigoProducto = partes[0];
-		        empleado.addProductRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
+		        Empleado.addProductRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
 				}
 			}
 			
