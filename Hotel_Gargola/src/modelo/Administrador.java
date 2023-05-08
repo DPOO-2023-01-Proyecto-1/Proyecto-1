@@ -378,7 +378,7 @@ public class Administrador extends Usuario {
 		}
 	}
 
-	public void addRoom(Map<Integer, Habitacion> rooms, int roomId, int valueByNight, String roomType,
+	public static void addRoom(Map<Integer, Habitacion> rooms, int roomId, int valueByNight, String roomType,
 			int guestCapacity, String availableServices, String filePath) throws IOException {
 		// Convierte el String de servicios en una lista de Strings
 
@@ -427,7 +427,7 @@ public class Administrador extends Usuario {
 		archivoTemporal.renameTo(new File(rutaArchivo));
 	}
 
-	public void addUser(String login, String password, String userType, Map<String, Usuario> usuarios,
+	public static void addUser(String login, String password, String userType, Map<String, Usuario> usuarios,
 			String rutaArchivo) throws IOException {
 
 		Usuario usuario;
@@ -442,11 +442,16 @@ public class Administrador extends Usuario {
 
 		usuarios.put(login, usuario);
 
-		FileWriter escritor = new FileWriter(rutaArchivo, true);
-		escritor.write(login + ";" + password + ";" + userType + "\n");
+		File archivo = new File(rutaArchivo);
+		FileWriter escritor = new FileWriter(archivo, true);
+		if (archivo.exists() && archivo.length() > 0) {
+			escritor.write("\n");
+		}
+		escritor.write(login + ";" + password + ";" + userType);
 		escritor.close();
+}
 
-	}
+	
 
 	public void deleteUser(String login, Map<String, Usuario> usuarios, String rutaArchivo) throws IOException {
 

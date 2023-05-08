@@ -5,10 +5,15 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -23,6 +28,7 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 	JTextField PriceServiceCatalog;
 	JTextField DescriptionServiceCatalog;
 	JTextField NameServiceCatalog;
+	JComboBox <String> serviciosDisponibles;
 
 	VentanaAdministrador vAdmin;
 	JButton AddNewServiceCatalog;
@@ -52,6 +58,24 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 		Panel.add(DescriptionServiceCatalog);
 
 		AddNewServiceCatalog = new JButton("Add New Service to Catalog");
+		
+		
+		serviciosDisponibles = new JComboBox();
+		try {
+			BufferedReader brServicios;
+			String linea = "";
+			brServicios = new BufferedReader(new FileReader("./data/servicios.txt"));
+			while ((linea = brServicios.readLine()) != null) 
+			{
+				String[] partes = linea.split(";"); // Separa la linea por los ;
+				String paraAgregar = partes[0] + "; " + partes[1] + "; " + partes[2] + ", " + partes[3];
+				
+				serviciosDisponibles.addItem(paraAgregar);
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		// ------------CUADRAR LABEL------------//
 		regresar = new JButton("Regresar");
@@ -64,6 +88,7 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 		// --------------ADDERS----------//
 		frame.add(regresar, BorderLayout.SOUTH);
 		frame.add(AddNewServiceCatalog, BorderLayout.WEST);
+		frame.add(serviciosDisponibles, BorderLayout.NORTH);
 		frame.add(Panel);
 
 		frame.setVisible(true);
@@ -71,29 +96,42 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if (e.getSource()==regresar)
-		{				
+		if (e.getSource() == regresar) {
 			vAdmin.getFrameAdmin().setVisible(true);
 			frame.dispose();
-		}
-		else if (e.getSource()==AddNewServiceCatalog)
-		{	
-			String NServiceCatalog = NameServiceCatalog.getText();
-		    String PServiceCatalog = PriceServiceCatalog.getText();
-		    int intPServiceCatalog = Integer.parseInt(PServiceCatalog);
-		    String IServiceCatalog = PriceServiceCatalog.getText();
-		    int intIServiceCatalog = Integer.parseInt(IServiceCatalog);
-		    String DServiceCatalog = DescriptionServiceCatalog.getText();
-		    String archivo = "./data/servicios.txt";
-		    
-		
-			Administrador.addServiceCatalog(Hotel.getMapaServicios(), intIServiceCatalog, NServiceCatalog, intPServiceCatalog, archivo,DServiceCatalog);
-			
-		    
-			
-		}
-		
-	}
+		} else if (e.getSource() == AddNewServiceCatalog) {
+			boolean productoAgregado = false;
+			try {
+				String NameService = NameServiceCatalog.getText();
+				String PriceService = PriceServiceCatalog.getText();
+				Integer intPriceService = Integer.parseInt(PriceService);
+				String IdService = IdServiceCatalog.getText();
+				Integer intIdService = Integer.parseInt(IdService);
+				String DescriptionProduct = DescriptionServiceCatalog.getText();
+				String archivo = "./data/productos.txt";
 
+				Administrador.addProductCatalog(Hotel.getMapaProductos(), intIdService, NameService,
+						intPriceService, archivo, DescriptionProduct);
+
+				productoAgregado = true;
+				
+				NameServiceCatalog.setText("");
+				PriceServiceCatalog.setText("");
+				IdServiceCatalog.setText("");
+				DescriptionServiceCatalog.setText("");
+				
+			} catch (NumberFormatException ex) {
+				JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros",
+						"Error de formato", JOptionPane.ERROR_MESSAGE);
+			} catch (Exception ex) {
+				JOptionPane.showMessageDialog(null, "Error al agregar servicio: " + ex.getMessage(),
+						"Error de aplicación", JOptionPane.ERROR_MESSAGE);
+			}
+
+			if (productoAgregado) {
+				JOptionPane.showMessageDialog(null, "Servicio agregado correctamente", "Mensaje de Aprobación",
+						JOptionPane.INFORMATION_MESSAGE);
+			}
+		}
+	}
 }

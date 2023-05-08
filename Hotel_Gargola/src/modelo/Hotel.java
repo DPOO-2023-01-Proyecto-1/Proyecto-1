@@ -263,14 +263,14 @@ public class Hotel {
 	}
 	
 
-	public Map<String, Usuario> getMapaUsuarios()
+	public static Map<String, Usuario> getMapaUsuarios()
 
 	{
 		return mapaUsuarios;
 
 	}
 
-	public Map<Integer, Habitacion> getMapaHabitaciones() {
+	public static Map<Integer, Habitacion> getMapaHabitaciones() {
 		return mapaHabitaciones;
 
 	}

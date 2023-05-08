@@ -32,6 +32,7 @@ public class VentanaAgregarProductoCatalogo extends JFrame implements ActionList
 	JComboBox <String> productosDisponibles;
 	VentanaAdministrador vAdmin;
 
+	@SuppressWarnings("resource")
 	VentanaAgregarProductoCatalogo(VentanaAdministrador vAdmin1) {
 		vAdmin = vAdmin1;
 		frame.setTitle("Agregar Producto al Catalogo");
@@ -67,8 +68,8 @@ public class VentanaAgregarProductoCatalogo extends JFrame implements ActionList
 			while ((linea = brProductos.readLine()) != null) 
 			{
 				String[] partes = linea.split(";"); // Separa la linea por los ;
-				String paraAgregar = partes[0] + "; " + partes[1] + "; " + partes[2] + ", " + partes[3]+ "; ";
-				System.out.println(partes[0]);
+				String paraAgregar = partes[0] + "; " + partes[1] + "; " + partes[2] + ", " + partes[3];
+				
 				productosDisponibles.addItem(paraAgregar);
 			}
 		} catch (IOException e) {
