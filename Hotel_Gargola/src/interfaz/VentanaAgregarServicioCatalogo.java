@@ -44,8 +44,7 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		if (e.getSource()==regresar)
-		{	
-			
+		{				
 			vAdmin.getFrameAdmin().setVisible(true);
 			frame.dispose();
 		}
