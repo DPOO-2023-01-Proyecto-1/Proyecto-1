@@ -66,7 +66,7 @@ public class Empleado extends Usuario
 		}
 	}
 
-	public void addServiceRoom(String archivo, int idBuscado, String nuevoServicio,
+	public static void addServiceRoom(String archivo, int idBuscado, String nuevoServicio,
 			Map<Integer, Habitacion> habitaciones) {
 		try {
 			// Lee todas las lineas del archivo en una lista
@@ -116,7 +116,7 @@ public class Empleado extends Usuario
 		}
 	}
 
-	private void actualizarHabitacion(Habitacion habitacion) {
+	private static void actualizarHabitacion(Habitacion habitacion) {
 		System.out.println("Habitación actualizada:");
 		System.out.println("ID: " + habitacion.getId());
 		System.out.println("Consumption record: " + habitacion.getConsumptionRecord());

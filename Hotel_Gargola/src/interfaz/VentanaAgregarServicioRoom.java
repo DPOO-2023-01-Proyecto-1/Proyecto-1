@@ -30,11 +30,9 @@ public class VentanaAgregarServicioRoom extends JFrame implements ActionListener
 	Hotel hotel = new Hotel();
 	VentanaEmpleado vEmpleado1;
 	JTextField codigoHabitacion;
-
 	JComboBox <String> serviciosDisponibles; //será que cambio a prdocutto?
 	JLabel indiqueCodigo;
 	JButton agregarServicio;
-	Empleado empleado = new Empleado("pepito","asdf","empleado");
 	VentanaAgregarServicioRoom(VentanaEmpleado vEmpleado)
 	{	
 		
@@ -123,7 +121,8 @@ public class VentanaAgregarServicioRoom extends JFrame implements ActionListener
 					String linea = serviciosDisponibles.getSelectedItem().toString();
 					String[] partes = linea.split(";");
 					String codigoProducto = partes[0];
-			        empleado.addServiceRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
+					Empleado.addServiceRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
+					JOptionPane.showMessageDialog(null, "Servicio agregado", "Mensaje de confirmación", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 		}

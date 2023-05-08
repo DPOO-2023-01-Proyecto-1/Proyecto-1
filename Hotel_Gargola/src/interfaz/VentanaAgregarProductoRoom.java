@@ -128,6 +128,7 @@ public class VentanaAgregarProductoRoom extends JFrame implements ActionListener
 				String[] partes = linea.split(";");
 				String codigoProducto = partes[0];
 		        Empleado.addProductRoom(rutaArchivo, intHabitacion, codigoProducto, hotel.getMapaHabitaciones());
+		        JOptionPane.showMessageDialog(null, "Producto agregado", "Mensaje de confirmación", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 			
