@@ -310,7 +310,7 @@ public class Aplicacion {
 				    	
 				    	String rutaServicioEliminarCatalogo = "./data/servicios.txt";
 				    	
-				    	admin.deleteServiceCatalog(hotel.getMapaServicios(), intCodigoServicioEliminarCatalogo, rutaServicioEliminarCatalogo);
+				    	//admin.deleteServiceCatalog(hotel.getMapaServicios(), intCodigoServicioEliminarCatalogo, rutaServicioEliminarCatalogo);
 				    	
 				    	break;
 				

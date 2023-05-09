@@ -306,9 +306,9 @@ public class Administrador extends Usuario {
 	        boolean hasConsumptionRecords = false;
 	        // Verificar si el producto está en los registros de consumo de alguna habitación
 	        for (Habitacion room : rooms.values()) {
-	            if (room.getConsumptionRecord().contains(deletedProduct)) {
+	            if (room.getConsumptionRecord().contains(id.toString())) {
 	                hasConsumptionRecords = true;
-	                System.out.println("No se puede eliminar el producto con ID " + id + " porque está incluido en los registros de consumo de la habitación " + room.getId());
+	                //System.out.println("No se puede eliminar el producto con ID " + id + " porque está incluido en los registros de consumo de la habitación " + room.getId());
 	                return;
 	            }
 	        }
@@ -327,69 +327,77 @@ public class Administrador extends Usuario {
 	                }
 	            }
 	        } catch (IOException e) {
-	            System.err.println("Error al eliminar producto: " + e.getMessage());
+	            //System.err.println("Error al eliminar producto: " + e.getMessage());
 	            return;
 	        }
 
-	        // Escribir archivo temporal en disco
+	        //Escribir archivo temporal en disco
 	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile))) {
 	            for (String line : tempLines) {
 	                writer.write(line);
 	                writer.newLine();
 	            }
 	        } catch (IOException e) {
-	            System.err.println("Error al eliminar producto: " + e.getMessage());
+	            //System.err.println("Error al eliminar producto: " + e.getMessage());
 	            return;
 	        }
 	    } else {
-	        System.out.println("El producto con ID " + id + " no existe en el Map.");
+	        //System.out.println("El producto con ID " + id + " no existe en el Map.");
 	    }
 	}
 
 
 	
-
-
-	public void deleteServiceCatalog(Map<Integer, Servicio> services, Integer id, String textFile) {
-		// Obtener el Servicio correspondiente al ID
-
+	public static void deleteServiceCatalog(Map<Integer, Servicio> services, Map<Integer, Habitacion> rooms, Integer id, String textFile) {
+		// Obtener el servicio correspondiente al ID
 		Servicio deletedService = services.get(id);
 
-		// Si el Servicio existe en el Map
+	// Si el servicio existe en el Map
+	if (deletedService != null) {
 
-		if (deletedService != null) {
-			// Eliminar Servicio del Map
+	    boolean hasConsumptionRecords = false;
+	    // Verificar si el servicio está en los registros de consumo de alguna habitación
+	    for (Habitacion room : rooms.values()) {
+	        if (room.getConsumptionRecord().contains(id.toString())) {
+	            hasConsumptionRecords = true;
+	            //System.out.println("No se puede eliminar el servicio con ID " + id + " porque está incluido en los registros de consumo de la habitación " + room.getId());
+	            return;
+	        }
+	    }
+	    
+	    // Eliminar servicio del Map
+	    services.remove(id);
 
-			services.remove(id);
+	    // Crear archivo temporal en memoria y escribir líneas correspondientes
+	    List<String> tempLines = new ArrayList<>();
+	    try (BufferedReader reader = new BufferedReader(new FileReader(textFile))) {
+	        String currentLine;
+	        while ((currentLine = reader.readLine()) != null) {
+	            String[] fields = currentLine.split(";");
+	            if (!fields[0].equals(String.valueOf(id))) {
+	                tempLines.add(currentLine);
+	            }
+	        }
+	    } catch (IOException e) {
+	        //System.err.println("Error al eliminar servicio: " + e.getMessage());
+	        return;
+	    }
 
-			// Eliminar línea correspondiente al Servicio en el archivo de texto
-
-			try (BufferedReader reader = new BufferedReader(new FileReader(textFile));
-					BufferedWriter writer = new BufferedWriter(new FileWriter(textFile + ".temp"))) {
-				String currentLine;
-				while ((currentLine = reader.readLine()) != null) {
-					String[] fields = currentLine.split(";");
-					if (!fields[0].equals(String.valueOf(id))) {
-						writer.write(currentLine);
-						writer.newLine();
-					}
-				}
-			} catch (IOException e) {
-				System.err.println("Error al eliminar producto: " + e.getMessage());
-			}
-
-			// Renombrar archivo temporal y borrar el original
-
-			try {
-				java.nio.file.Files.move(java.nio.file.Paths.get(textFile + ".temp"), java.nio.file.Paths.get(textFile),
-						java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-			} catch (IOException e) {
-				System.err.println("Error al renombrar archivo temporal: " + e.getMessage());
-			}
-		} else {
-			System.out.println("El producto con ID " + id + " no existe en el Map.");
-		}
+	    // Escribir archivo temporal en disco
+	    try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile))) {
+	        for (String line : tempLines) {
+	            writer.write(line);
+	            writer.newLine();
+	        }
+	    } catch (IOException e) {
+	        //System.err.println("Error al eliminar servicio: " + e.getMessage());
+	        return;
+	    }
+	} else {
+	    //System.out.println("El servicio con ID " + id + " no existe en el Map.");
 	}
+}
+
 
 	public static void addRoom(Map<Integer, Habitacion> rooms, int roomId, int valueByNight, String roomType,
 			int guestCapacity, String availableServices, String filePath) throws IOException {
@@ -466,17 +474,31 @@ public class Administrador extends Usuario {
 
 	
 
-	public void deleteUser(String login, Map<String, Usuario> usuarios, String rutaArchivo) throws IOException {
+	public static void deleteUser(String login, Map<String, Usuario> usuarios, String rutaArchivo) throws IOException {
+	    Usuario deletedUser = usuarios.get(login);
 
-		usuarios.remove(login);
+	    if (deletedUser != null) {
+	        // Verificar que el usuario no sea el administrador
+	        if (deletedUser.getUserType().equals("administrador")) {
+	            //System.out.println("El usuario " + login + " es administrador y no puede eliminarse.");
+	            return;
+	        }
 
-		FileWriter escritor = new FileWriter(rutaArchivo);
+	        usuarios.remove(login);
 
-		for (Usuario usuario : usuarios.values()) {
-			escritor.write(usuario.getLogin() + ";" + usuario.getPassword() + ";" + usuario.getUserType() + "\n");
-		}
-		escritor.close();
+	        FileWriter escritor = new FileWriter(rutaArchivo);
+
+	        for (Usuario usuario : usuarios.values()) {
+	            escritor.write(usuario.getLogin() + ";" + usuario.getPassword() + ";" + usuario.getUserType() + "\n");
+	        }
+
+	        escritor.close();
+	        //System.out.println("El usuario " + login + " ha sido eliminado correctamente.");
+	    } else {
+	        //System.out.println("El usuario " + login + " no existe.");
+	    }
 	}
+
 
 	public void getBookings(Map<Integer, Reserva> reservas) {
 		for (Map.Entry<Integer, Reserva> entry : reservas.entrySet()) {

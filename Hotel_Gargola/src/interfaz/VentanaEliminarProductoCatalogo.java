@@ -9,6 +9,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
+import java.util.Set;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -100,11 +101,25 @@ public class VentanaEliminarProductoCatalogo extends JFrame implements ActionLis
 	            Map<Integer, Producto> mapaProductos = Hotel.getMapaProductos();
 	            Map<Integer, Habitacion> mapaHabitaciones = Hotel.getMapaHabitaciones();
 
-	            boolean productoEncontro = false;
-
+	           
+	            
 	            Administrador.deleteProductCatalog(mapaProductos, mapaHabitaciones, intCodigoProducto, archivo);
-	            JOptionPane.showMessageDialog(null, "El producto con ID " + intCodigoProducto + " ha sido eliminado correctamente del catálogo.");
-	            codigoProducto.setText("");
+	            
+
+	            Set<Integer> keys = mapaProductos.keySet();
+	            
+	            boolean productoEncontro = (keys.contains(intCodigoProducto));
+	            
+	            if (productoEncontro) {
+	            	JOptionPane.showMessageDialog(null, "El producto con ID " + intCodigoProducto + " no pudo ser eliminado correctamente del catálogo debido a que se encontro en el registro de consumo de una habitacion.");
+	 	            codigoProducto.setText("");
+	            }else {
+	            	JOptionPane.showMessageDialog(null, "El producto con ID " + intCodigoProducto + " ha sido eliminado correctamente del catálogo.");
+	 	            codigoProducto.setText("");
+	            }
+
+	           
+	      
 	            
 	        } catch (NumberFormatException ex) {
 	            JOptionPane.showMessageDialog(null, "Por favor, ingrese un número válido para el código del producto.");
