@@ -26,6 +26,18 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 
+import java.io.*;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.CategoryDataset;
+import org.jfree.data.category.DefaultCategoryDataset;
+import org.jfree.ui.RefineryUtilities;
+import org.jfree.chart.ChartUtilities;
+
+import interfaz.DiagramaBarras;
+
 
 public class VentanaListaDeReservas extends JFrame implements ActionListener{
 	
@@ -37,6 +49,7 @@ public class VentanaListaDeReservas extends JFrame implements ActionListener{
 	int maxValue = 10000;
 	Map<Integer,Integer> mapaMeses = new LinkedHashMap<>();
 	VentanaRecepcionista vRecepcionista;
+	
 	
 	VentanaListaDeReservas(VentanaRecepcionista vRecepcionista1)
 	{	
@@ -68,9 +81,7 @@ public class VentanaListaDeReservas extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 		
-		
-		
-		
+			
 		
 		
 		//--------------------------------------//
@@ -92,12 +103,20 @@ public class VentanaListaDeReservas extends JFrame implements ActionListener{
 		//--------------ADDERS----------//
 		frame.add(regresar, BorderLayout.SOUTH);
 		
+		//--------CUADRAR GRAFICA---------//
+		DiagramaBarras diagrama = new DiagramaBarras("ensayo", "ensayis");
+		
+		//-------------------------------//
 		
 		
+		diagrama.pack();
+		RefineryUtilities.centerFrameOnScreen( diagrama );
+	
+		diagrama.setVisible(true);
 		frame.setVisible(true);
 	}
 	
-	
+	 
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -109,5 +128,12 @@ public class VentanaListaDeReservas extends JFrame implements ActionListener{
 		}
 		
 	}
-
+	
+	//-------RETURNERS-------//
+	public Map<Integer,Integer> getMapaGrafica()
+	{
+		return mapaMeses;
+	}
+	
+	
 }

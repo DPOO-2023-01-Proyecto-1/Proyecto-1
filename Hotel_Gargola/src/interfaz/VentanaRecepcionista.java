@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import org.jfree.ui.RefineryUtilities;
+
 public class VentanaRecepcionista extends JFrame implements ActionListener {
 	JFrame frame = new JFrame();
 	JLabel labelBienvenida = new JLabel("Bienvenido recepcionista");
@@ -34,7 +36,7 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 		hacerCheckIn = new JButton("Hacer Check-in");
 		hacerCheckOut= new JButton("Hacer Check-out");
 		hacerReserva = new JButton("Registrarse");
-		listaDeReservas = new JButton("Lista De Reservas");
+		listaDeReservas = new JButton("Ocupación en un año");
 		//------------ACTIONS LISTENERS------------//
 		hacerCheckIn.addActionListener(this);
 		hacerCheckOut.addActionListener(this);
@@ -76,8 +78,12 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 		}
 		if (e.getSource()==listaDeReservas) 
 		{
-			VentanaListaDeReservas vListaDeReservas = new VentanaListaDeReservas(this);
-			frame.setVisible(false);
+			DiagramaBarras diagrama = new DiagramaBarras("Ocupación en un año", "Ocupación en un año");
+			
+			diagrama.pack();
+			RefineryUtilities.centerFrameOnScreen( diagrama );
+		
+			diagrama.setVisible(true);
 		}
 		
 		
