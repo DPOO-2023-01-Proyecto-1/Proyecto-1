@@ -74,9 +74,11 @@ public class VentanaAgregarHabitacion extends JFrame implements ActionListener{
 			while ((linea = brServicios.readLine()) != null) 
 			{
 				String[] partes = linea.split(";"); // Separa la linea por los ;
-				String paraAgregar = partes[0];
+				String paraAgregar = "IdRoom: " + partes[0] + ", Available Services Codes: " + partes[2] + ", Room Type:" + partes[7];
 				habitacionesActuales.addItem(paraAgregar);
 			}
+			
+		
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

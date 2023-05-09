@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 
 import modelo.Administrador;
 import modelo.Hotel;
+import modelo.Usuario;
 
 public class VentanaAgregarUsuario extends JFrame implements ActionListener{
 	
@@ -66,7 +68,6 @@ public class VentanaAgregarUsuario extends JFrame implements ActionListener{
 			{
 				String[] partes = linea.split(";"); // Separa la linea por los ;
 				String paraAgregar = partes[0] + "; " + partes[1] + "; " + partes[2];
-				
 				users.addItem(paraAgregar);
 			}
 		} catch (IOException e) {
@@ -92,20 +93,29 @@ public class VentanaAgregarUsuario extends JFrame implements ActionListener{
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	    if (e.getSource()==regresar) {
+	    if (e.getSource() == regresar) {
 	        vAdmin.getFrameAdmin().setVisible(true);
 	        frame.dispose();
-	    } else if (e.getSource()==addNewUser) {
+	    } else if (e.getSource() == addNewUser) {
 	        boolean usuarioAgregado = false;
+	        boolean usuarioExistente = false;
 	        try {
 	            String loginUser = login.getText();
 	            String passwordUser = password.getText();
 	            String statusUser = status.getText();
 	            String archivo = "./data/usuarios.txt";
 	            
-	            Administrador.addUser(loginUser, passwordUser, statusUser, Hotel.getMapaUsuarios(), archivo);
+	            for (Map.Entry<String, Usuario> entry : Hotel.getMapaUsuarios().entrySet()) {
+	                if (entry.getKey().equals(loginUser)) {
+	                    usuarioExistente = true;
+	                    break;
+	                }
+	            }
 	            
-	            usuarioAgregado = true;
+	            if (!usuarioExistente) {
+	                Administrador.addUser(loginUser, passwordUser, statusUser, Hotel.getMapaUsuarios(), archivo);
+	                usuarioAgregado = true;
+	            }
 	        } catch (IOException ex) {
 	            JOptionPane.showMessageDialog(null, "Error al agregar usuario: " + ex.getMessage(), "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
 	        } catch (NumberFormatException ex) {
@@ -114,6 +124,11 @@ public class VentanaAgregarUsuario extends JFrame implements ActionListener{
 	        
 	        if (usuarioAgregado) {
 	            JOptionPane.showMessageDialog(null, "Usuario agregado exitosamente", "Mensaje de Aprobación", JOptionPane.INFORMATION_MESSAGE);
+	            login.setText("");
+	            password.setText("");
+	            status.setText("");
+	        } else if (usuarioExistente) {
+	            JOptionPane.showMessageDialog(null, "El usuario ya existe", "Mensaje de Error", JOptionPane.ERROR_MESSAGE);
 	            login.setText("");
 	            password.setText("");
 	            status.setText("");

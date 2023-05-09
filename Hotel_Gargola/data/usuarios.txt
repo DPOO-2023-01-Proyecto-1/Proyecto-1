@@ -1,4 +1,3 @@
 manuelito;asdf;administrador
 andresito;asdf;recepcionista
 pepito;asdf;empleado
-camilo;1234567;administrador
