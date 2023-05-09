@@ -82,7 +82,7 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 			
 			diagrama.pack();
 			RefineryUtilities.centerFrameOnScreen( diagrama );
-		
+			
 			diagrama.setVisible(true);
 		}
 		

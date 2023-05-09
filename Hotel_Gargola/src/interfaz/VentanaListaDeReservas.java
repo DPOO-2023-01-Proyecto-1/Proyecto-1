@@ -113,6 +113,7 @@ public class VentanaListaDeReservas extends JFrame implements ActionListener{
 		RefineryUtilities.centerFrameOnScreen( diagrama );
 	
 		diagrama.setVisible(true);
+		
 		frame.setVisible(true);
 	}
 	
