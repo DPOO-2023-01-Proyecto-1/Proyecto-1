@@ -14,5 +14,3 @@
 314;Vino;20000;Sin restricción
 315;Cócteles;12000;Habitacion
 316;Camarones;70000;Habitacion
-200;masaje;70000;delicioso masaje
-201;lavanderia;70000;asds
