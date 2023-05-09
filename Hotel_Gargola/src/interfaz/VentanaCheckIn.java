@@ -13,6 +13,7 @@ import javax.swing.AbstractButton;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -100,6 +101,8 @@ public	VentanaCheckIn(VentanaRecepcionista vRecepcionista1)
 			frame.dispose();
 		}
 		else if (e.getSource()==hacerCheckIn) {
+			boolean checkin = false;
+			try {
 	        Integer bookingId = Recepcionista.generateID();
 	        String entryDate = entryDateField.getText();
 	        String departureDate = departureDateField.getText();
@@ -115,8 +118,25 @@ public	VentanaCheckIn(VentanaRecepcionista vRecepcionista1)
 	        String archivo = "./data/reservas.txt";
 	        Recepcionista.checkIn(bookingId, entryDate, departureDate, associatedRooms, guestList, associatedValue, archivo);
 	    
+	        checkin = true;
+			entryDateField.setText("");
+			departureDateField.setText("");
+			associatedRoomsField.setText("");
+			associatedValueField.setText("");
+			guestListField.setText("");
+		} catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros",
+					"Error de formato", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, "Error al hacer Check-In: " + ex.getMessage(),
+					"Error de aplicación", JOptionPane.ERROR_MESSAGE);
+		}
+
+		if (checkin) {
+			JOptionPane.showMessageDialog(null, "Ha completado el Check-In exitosamente", "Mensaje de Aprobación",
+					JOptionPane.INFORMATION_MESSAGE);
+		}
 	}
-		
-	}
+}
 
 }

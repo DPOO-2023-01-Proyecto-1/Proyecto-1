@@ -33,7 +33,7 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 		//----- INICIA BOTONES PANEL-------//
 		hacerCheckIn = new JButton("Hacer Check-in");
 		hacerCheckOut= new JButton("Hacer Check-out");
-		hacerReserva = new JButton("Hacer Reserva");
+		hacerReserva = new JButton("Registrarse");
 		listaDeReservas = new JButton("Lista De Reservas");
 		//------------ACTIONS LISTENERS------------//
 		hacerCheckIn.addActionListener(this);

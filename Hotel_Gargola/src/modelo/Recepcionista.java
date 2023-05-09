@@ -98,7 +98,7 @@ public class Recepcionista extends Usuario {
 		
 	}
 	
-	public void checkOut(Integer bookingId, String Archivo, String HuespedesArchivo) {
+	public static void checkOut(Integer bookingId, String Archivo, String HuespedesArchivo) {
 	    // Leer el archivo de texto y guardar las reservas que no se van a eliminar en una lista temporal
 	    ArrayList<Reserva> reservasTemporales = new ArrayList<>();
 	    try {
@@ -202,7 +202,7 @@ public class Recepcionista extends Usuario {
         return bookingsList;
     }
 	
-	public Huesped crearHuesped(String name, int age, String email, String Archivo, int guestID) {
+	public static Huesped crearHuesped(String name, int age, String email, String Archivo, int guestID) {
 	    // Crear un nuevo huésped
 	    Huesped nuevoHuesped = new Huesped(name, age, email, guestID);
 	    
