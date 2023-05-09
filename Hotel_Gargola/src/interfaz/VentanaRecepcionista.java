@@ -50,7 +50,6 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 		//----AGREGA AL FRAME------//
 		frame.add(labelBienvenida, BorderLayout.NORTH);
 		frame.add(panelBotones, BorderLayout.CENTER);
-		frame.add(new JButton("Pruebita aña"), BorderLayout.SOUTH);
 		
 		frame.setVisible(true);
 		
