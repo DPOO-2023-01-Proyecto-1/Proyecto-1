@@ -7,5 +7,3 @@
 206;Spa;100000;Servicios de masajes, tratamientos faciales y corporales, saunas, jacuzzis, etc.
 207;Gimnasio;0;Instalaciones para hacer ejercicio y mantenerse en forma durante la estancia en el hotel
 208;Piscina;0;Piscina para uso exclusivo de los huéspedes del hotel
-209;Servicio de limpieza diario;0;Limpieza y ordenamiento diario de la habitación del huésped durante su estadía en el hotel.
-210;Servicio de transporte con vehiculo blindado;2000000;Excelente, seguro y confiable servicio de transporte en vehiculos blindados.

@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +20,7 @@ import javax.swing.JTextField;
 
 import modelo.Administrador;
 import modelo.Hotel;
+import modelo.Producto;
 
 public class VentanaAgregarProductoCatalogo extends JFrame implements ActionListener {
 
@@ -95,41 +97,52 @@ public class VentanaAgregarProductoCatalogo extends JFrame implements ActionList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == regresar) {
-			vAdmin.getFrameAdmin().setVisible(true);
-			frame.dispose();
-		} else if (e.getSource() == AddNewProductCatalog) {
-			boolean productoAgregado = false;
-			try {
-				String NameProductCatalog = NameNewProduct.getText();
-				String PriceProductCatalog = PriceNewProduct.getText();
-				Integer intPriceProductCatalog = Integer.parseInt(PriceProductCatalog);
-				String IdProductCatalog = IdNewProduct.getText();
-				Integer intIdProductCatalog = Integer.parseInt(IdProductCatalog);
-				String RestrictionsProductCatalog = RestrictionNewProduct.getText();
-				String archivo = "./data/productos.txt";
-
-				Administrador.addProductCatalog(Hotel.getMapaProductos(), intIdProductCatalog, NameProductCatalog,
-						intPriceProductCatalog, archivo, RestrictionsProductCatalog);
-
-				productoAgregado = true;
-				NameNewProduct.setText("");
-				PriceNewProduct.setText("");
-				IdNewProduct.setText("");
-				RestrictionNewProduct.setText("");
-			} catch (NumberFormatException ex) {
-				JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros",
-						"Error de formato", JOptionPane.ERROR_MESSAGE);
-			} catch (Exception ex) {
-				JOptionPane.showMessageDialog(null, "Error al agregar producto: " + ex.getMessage(),
-						"Error de aplicación", JOptionPane.ERROR_MESSAGE);
-			}
-
-			if (productoAgregado) {
-				JOptionPane.showMessageDialog(null, "Producto agregado correctamente", "Mensaje de Aprobación",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
+	    if (e.getSource() == regresar) {
+	        vAdmin.getFrameAdmin().setVisible(true);
+	        frame.dispose();
+	    } else if (e.getSource() == AddNewProductCatalog) {
+	        try {
+	            String NameProductCatalog = NameNewProduct.getText();
+	            String PriceProductCatalog = PriceNewProduct.getText();
+	            Integer intPriceProductCatalog = Integer.parseInt(PriceProductCatalog);
+	            String IdProductCatalog = IdNewProduct.getText();
+	            Integer intIdProductCatalog = Integer.parseInt(IdProductCatalog);
+	            String RestrictionsProductCatalog = RestrictionNewProduct.getText();
+	            String archivo = "./data/productos.txt";
+	            
+	            // Verificar si el producto ya existe
+	            Map<Integer, Producto> mapaProductos = Hotel.getMapaProductos();
+	            boolean productoYaExiste = false;
+	            for (Producto producto : mapaProductos.values()) {
+	                if (producto.getName().equalsIgnoreCase(NameProductCatalog) || producto.getId() == intIdProductCatalog) {
+	                    productoYaExiste = true;
+	                    break;
+	                }
+	            }
+	            
+	            if (productoYaExiste) {
+	                JOptionPane.showMessageDialog(null, "El producto ya existe", "Error de aplicación", JOptionPane.ERROR_MESSAGE);
+	                NameNewProduct.setText("");
+	                PriceNewProduct.setText("");
+	                IdNewProduct.setText("");
+	                RestrictionNewProduct.setText("");
+	            } else {
+	                Administrador.addProductCatalog(mapaProductos, intIdProductCatalog, NameProductCatalog, intPriceProductCatalog, archivo, RestrictionsProductCatalog);
+	                JOptionPane.showMessageDialog(null, "Producto agregado correctamente", "Mensaje de Aprobación", JOptionPane.INFORMATION_MESSAGE);
+	                NameNewProduct.setText("");
+	                PriceNewProduct.setText("");
+	                IdNewProduct.setText("");
+	                RestrictionNewProduct.setText("");
+	            }
+	        } catch (NumberFormatException ex) {
+	            JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros", "Error de formato", JOptionPane.ERROR_MESSAGE);
+	            PriceNewProduct.setText("");
+                IdNewProduct.setText("");
+	        } catch (Exception ex) {
+	            JOptionPane.showMessageDialog(null, "Error al agregar producto: " + ex.getMessage(), "Error de aplicación", JOptionPane.ERROR_MESSAGE);
+	        }
+	    }
 	}
+
 
 }

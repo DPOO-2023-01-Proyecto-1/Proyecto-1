@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -19,6 +20,8 @@ import javax.swing.JTextField;
 
 import modelo.Administrador;
 import modelo.Hotel;
+import modelo.Producto;
+import modelo.Servicio;
 
 public class VentanaAgregarServicioCatalogo extends JFrame implements ActionListener {
 
@@ -96,42 +99,45 @@ public class VentanaAgregarServicioCatalogo extends JFrame implements ActionList
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == regresar) {
-			vAdmin.getFrameAdmin().setVisible(true);
-			frame.dispose();
-		} else if (e.getSource() == AddNewServiceCatalog) {
-			boolean productoAgregado = false;
-			try {
-				String NameService = NameServiceCatalog.getText();
-				String PriceService = PriceServiceCatalog.getText();
-				Integer intPriceService = Integer.parseInt(PriceService);
-				String IdService = IdServiceCatalog.getText();
-				Integer intIdService = Integer.parseInt(IdService);
-				String DescriptionProduct = DescriptionServiceCatalog.getText();
-				String archivo = "./data/productos.txt";
+	    if (e.getSource() == regresar) {
+	        vAdmin.getFrameAdmin().setVisible(true);
+	        frame.dispose();
+	    } else if (e.getSource() == AddNewServiceCatalog) {
+	        try {
+	            String nameService = NameServiceCatalog.getText();
+	            String priceService = PriceServiceCatalog.getText();
+	            int intPriceService = Integer.parseInt(priceService);
+	            String idService = IdServiceCatalog.getText();
+	            int intIdService = Integer.parseInt(idService);
+	            String descriptionService = DescriptionServiceCatalog.getText();
+	            String archivo = "./data/productos.txt";
 
-				Administrador.addProductCatalog(Hotel.getMapaProductos(), intIdService, NameService,
-						intPriceService, archivo, DescriptionProduct);
+	            // Verificar si el servicio ya existe
+	            Map<Integer, Servicio> mapaServicios = Hotel.getMapaServicios();
+	            if (mapaServicios.containsKey(intIdService)) {
+	                JOptionPane.showMessageDialog(null, "El servicio ya existe", "Error de aplicación", JOptionPane.ERROR_MESSAGE);
+	                NameServiceCatalog.setText("");
+	                PriceServiceCatalog.setText("");
+	                IdServiceCatalog.setText("");
+	                DescriptionServiceCatalog.setText("");
+	            } else {
+	                Administrador.addServiceCatalog(mapaServicios, intIdService, nameService, intPriceService, archivo, descriptionService);
 
-				productoAgregado = true;
-				
-				NameServiceCatalog.setText("");
-				PriceServiceCatalog.setText("");
-				IdServiceCatalog.setText("");
-				DescriptionServiceCatalog.setText("");
-				
-			} catch (NumberFormatException ex) {
-				JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros",
-						"Error de formato", JOptionPane.ERROR_MESSAGE);
-			} catch (Exception ex) {
-				JOptionPane.showMessageDialog(null, "Error al agregar servicio: " + ex.getMessage(),
-						"Error de aplicación", JOptionPane.ERROR_MESSAGE);
-			}
+	                // Mensaje de servicio agregado exitosamente
+	                JOptionPane.showMessageDialog(null, "Servicio agregado correctamente", "Mensaje de Aprobación", JOptionPane.INFORMATION_MESSAGE);
 
-			if (productoAgregado) {
-				JOptionPane.showMessageDialog(null, "Servicio agregado correctamente", "Mensaje de Aprobación",
-						JOptionPane.INFORMATION_MESSAGE);
-			}
-		}
+	                // Limpiar campos
+	                NameServiceCatalog.setText("");
+	                PriceServiceCatalog.setText("");
+	                IdServiceCatalog.setText("");
+	                DescriptionServiceCatalog.setText("");
+	            }
+	        } catch (NumberFormatException ex) {
+	            JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros", "Error de formato", JOptionPane.ERROR_MESSAGE);
+	        }
+	    }
 	}
+
+
+
 }

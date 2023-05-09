@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Map;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import modelo.Administrador;
+import modelo.Habitacion;
 import modelo.Hotel;
 
 public class VentanaAgregarHabitacion extends JFrame implements ActionListener{
@@ -132,14 +134,23 @@ public class VentanaAgregarHabitacion extends JFrame implements ActionListener{
 
 	            String archivo = "./data/habitaciones.txt";
 
-	            Administrador.addRoom(Hotel.getMapaHabitaciones(),intIdRoom,intPriceByNightRoom,typeRoom,intGuestCapacityRoom,avaibleServicesRoom,archivo);
-
-	            HabitacionAgregada = true;
-	            roomID.setText("");
-	            roomValueByNight.setText("");
-	            roomGuestCapacity.setText("");
-	            roomAvailableServices.setText("");
-	            roomType.setText("");
+	            Map<Integer, Habitacion> mapaHabitaciones = Hotel.getMapaHabitaciones();
+	            if(mapaHabitaciones.containsKey(intIdRoom)) {
+	                JOptionPane.showMessageDialog(null, "La habitación ya existe", "Error al agregar habitación", JOptionPane.ERROR_MESSAGE);
+	                roomID.setText("");
+	                roomValueByNight.setText("");
+	                roomGuestCapacity.setText("");
+	                roomAvailableServices.setText("");
+	                roomType.setText("");
+	            } else {
+	                Administrador.addRoom(mapaHabitaciones, intIdRoom, intPriceByNightRoom, typeRoom, intGuestCapacityRoom, avaibleServicesRoom, archivo);
+	                HabitacionAgregada = true;
+	                roomID.setText("");
+	                roomValueByNight.setText("");
+	                roomGuestCapacity.setText("");
+	                roomAvailableServices.setText("");
+	                roomType.setText("");
+	            }
 	        } catch (NumberFormatException ex) {
 	            JOptionPane.showMessageDialog(null, "Los valores de capacidad de huéspedes y precio deben ser números enteros", "Error de formato", JOptionPane.ERROR_MESSAGE);
 	        } catch (Exception ex) {
