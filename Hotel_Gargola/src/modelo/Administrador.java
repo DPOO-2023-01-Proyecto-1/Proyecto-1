@@ -296,46 +296,59 @@ public class Administrador extends Usuario {
 	}
 
 
-	public void deleteProductCatalog(Map<Integer, Producto> products, Integer id, String textFile) {
-		// Obtener el producto correspondiente al ID
+	public static void deleteProductCatalog(Map<Integer, Producto> products, Map<Integer, Habitacion> rooms, Integer id, String textFile) {
+	    // Obtener el producto correspondiente al ID
+	    Producto deletedProduct = products.get(id);
 
-		Producto deletedProduct = products.get(id);
+	    // Si el producto existe en el Map
+	    if (deletedProduct != null) {
 
-		// Si el producto existe en el Map
+	        boolean hasConsumptionRecords = false;
+	        // Verificar si el producto está en los registros de consumo de alguna habitación
+	        for (Habitacion room : rooms.values()) {
+	            if (room.getConsumptionRecord().contains(deletedProduct)) {
+	                hasConsumptionRecords = true;
+	                System.out.println("No se puede eliminar el producto con ID " + id + " porque está incluido en los registros de consumo de la habitación " + room.getId());
+	                return;
+	            }
+	        }
+	        
+	        // Eliminar producto del Map
+	        products.remove(id);
 
-		if (deletedProduct != null) {
-			// Eliminar producto del Map
+	        // Crear archivo temporal en memoria y escribir líneas correspondientes
+	        List<String> tempLines = new ArrayList<>();
+	        try (BufferedReader reader = new BufferedReader(new FileReader(textFile))) {
+	            String currentLine;
+	            while ((currentLine = reader.readLine()) != null) {
+	                String[] fields = currentLine.split(";");
+	                if (!fields[0].equals(String.valueOf(id))) {
+	                    tempLines.add(currentLine);
+	                }
+	            }
+	        } catch (IOException e) {
+	            System.err.println("Error al eliminar producto: " + e.getMessage());
+	            return;
+	        }
 
-			products.remove(id);
-
-			// Eliminar línea correspondiente al producto en el archivo de texto
-
-			try (BufferedReader reader = new BufferedReader(new FileReader(textFile));
-					BufferedWriter writer = new BufferedWriter(new FileWriter(textFile + ".temp"))) {
-				String currentLine;
-				while ((currentLine = reader.readLine()) != null) {
-					String[] fields = currentLine.split(";");
-					if (!fields[0].equals(String.valueOf(id))) {
-						writer.write(currentLine);
-						writer.newLine();
-					}
-				}
-			} catch (IOException e) {
-				System.err.println("Error al eliminar producto: " + e.getMessage());
-			}
-
-			// Renombrar archivo temporal y borrar el original
-
-			try {
-				java.nio.file.Files.move(java.nio.file.Paths.get(textFile + ".temp"), java.nio.file.Paths.get(textFile),
-						java.nio.file.StandardCopyOption.REPLACE_EXISTING);
-			} catch (IOException e) {
-				System.err.println("Error al renombrar archivo temporal: " + e.getMessage());
-			}
-		} else {
-			System.out.println("El producto con ID " + id + " no existe en el Map.");
-		}
+	        // Escribir archivo temporal en disco
+	        try (BufferedWriter writer = new BufferedWriter(new FileWriter(textFile))) {
+	            for (String line : tempLines) {
+	                writer.write(line);
+	                writer.newLine();
+	            }
+	        } catch (IOException e) {
+	            System.err.println("Error al eliminar producto: " + e.getMessage());
+	            return;
+	        }
+	    } else {
+	        System.out.println("El producto con ID " + id + " no existe en el Map.");
+	    }
 	}
+
+
+	
+
 
 	public void deleteServiceCatalog(Map<Integer, Servicio> services, Integer id, String textFile) {
 		// Obtener el Servicio correspondiente al ID

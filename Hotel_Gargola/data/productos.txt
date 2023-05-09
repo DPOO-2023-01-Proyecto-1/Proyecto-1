@@ -1,9 +1,7 @@
-300;Coca Cola;4000;Sin restricción
 301;Palito de queso;2500;Sin restricción
 302;Cerveza;4500;Sin restricción
 303;Agua mineral;2000;Sin restricción
 304;Pizza;10000;Sin restricción
-305;Hamburguesa;8000;Sin restricción
 306;Ensalada;7000;Sin restricción
 307;Sandwich;5000;Sin restricción
 308;Helado;3500;Sin restricción
@@ -13,4 +11,3 @@
 313;Jugo natural;4000;Sin restricción
 314;Vino;20000;Sin restricción
 315;Cócteles;12000;Habitacion
-316;Camarones;70000;Habitacion

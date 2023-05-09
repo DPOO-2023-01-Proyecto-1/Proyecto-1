@@ -76,4 +76,7 @@ public class Habitacion
 	{
 		return totalValue;
 	}
+	
+	//Método auxiliar para verificar si un producto está en el registro de consumo de una habitación
+	
 }

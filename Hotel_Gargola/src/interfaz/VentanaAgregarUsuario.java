@@ -41,7 +41,7 @@ public class VentanaAgregarUsuario extends JFrame implements ActionListener{
 		frame.setTitle("Hacer Reserva");
 		frame.setSize(new Dimension(750,750));
 		
-		JPanel Panel = new JPanel(new GridLayout(4, 2));
+		JPanel Panel = new JPanel(new GridLayout(3, 2));
 
 		Panel.add(new JLabel("New User Login"));
 		login = new JTextField();
@@ -106,7 +106,7 @@ public class VentanaAgregarUsuario extends JFrame implements ActionListener{
 	            String archivo = "./data/usuarios.txt";
 	            
 	            for (Map.Entry<String, Usuario> entry : Hotel.getMapaUsuarios().entrySet()) {
-	                if (entry.getKey().equals(loginUser)) {
+	                if (entry.getKey().equalsIgnoreCase(loginUser)) {
 	                    usuarioExistente = true;
 	                    break;
 	                }

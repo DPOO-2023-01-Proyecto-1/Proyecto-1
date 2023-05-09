@@ -313,24 +313,7 @@ public class Aplicacion {
 				    	admin.deleteServiceCatalog(hotel.getMapaServicios(), intCodigoServicioEliminarCatalogo, rutaServicioEliminarCatalogo);
 				    	
 				    	break;
-				    	
-				    case 8:
-				    	
-				    	Hotel.mostrarProductos();
-				    	
-				    	System.out.println("");
-				    	
-				    	System.out.println("Ingrese el codigo del producto que desea eliminar del catalogo de productos:");
-				    	
-				    	String codigoProductoEliminarCatalogo = scanner.nextLine();
-				    	
-				    	int intCodigoProductoEliminarCatalogo = Integer.parseInt(codigoProductoEliminarCatalogo);
-				    	
-				    	String rutaProductoEliminarCatalogo = "./data/servicios.txt";
-				    	
-				    	admin.deleteProductCatalog(hotel.getMapaProductos(),intCodigoProductoEliminarCatalogo, rutaProductoEliminarCatalogo);
-				    	
-				    	break;
+				
 				    
 				    case 9:
 				    	
@@ -537,10 +520,10 @@ public class Aplicacion {
 	
 
 
-	//public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
-		//Aplicacion consola = new Aplicacion();
-		//consola.ejecutarAplicacion();
-	//}
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+		Aplicacion consola = new Aplicacion();
+		consola.ejecutarAplicacion();
+	}
 	
 	public void menu_administrador() {
 		System.out.println("Ingrese a partir de las siguientes opciones la accion que desea realizar\n");
