@@ -30,7 +30,7 @@ public class VentanaEliminarUsuario  extends JFrame implements ActionListener {
 	JButton eraseUser;
 	JComboBox <String> users;
 	JTextField login;
-	 private VentanaAdministrador vAdmin;
+	private VentanaAdministrador vAdmin;
 	
 	
 	
