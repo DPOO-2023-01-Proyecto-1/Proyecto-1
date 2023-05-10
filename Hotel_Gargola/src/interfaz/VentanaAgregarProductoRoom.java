@@ -64,7 +64,7 @@ public class VentanaAgregarProductoRoom extends JFrame implements ActionListener
 			{
 				String[] partes = linea.split(";"); // Separa la linea por los ;
 				String paraAgregar = partes[0] + "; " + partes[1] + "; " + partes[2] + ", " + partes[3]+ "; ";
-				System.out.println(partes[0]);
+				//System.out.println(partes[0]);
 				productosDisponibles.addItem(paraAgregar);
 			}
 		} catch (IOException e) {

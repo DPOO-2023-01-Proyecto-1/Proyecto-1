@@ -60,9 +60,9 @@ public class Empleado extends Usuario
 			// Escribe todas las lineas actualizadas al archivo
 			Files.write(Paths.get(archivo), lineas, Charset.defaultCharset());
 
-			System.out.println("Producto agregado exitosamente.");
+			//System.out.println("Producto agregado exitosamente.");
 		} catch (IOException e) {
-			System.out.println("Error al agregar el producto: " + e.getMessage());
+			//System.out.println("Error al agregar el producto: " + e.getMessage());
 		}
 	}
 
@@ -110,16 +110,16 @@ public class Empleado extends Usuario
 			// Escribe todas las lineas actualizadas al archivo
 			Files.write(Paths.get(archivo), lineas, Charset.defaultCharset());
 
-			System.out.println("Servicio agregado exitosamente.");
+			//System.out.println("Servicio agregado exitosamente.");
 		} catch (IOException e) {
-			System.out.println("Error al agregar el servicio: " + e.getMessage());
+			//System.out.println("Error al agregar el servicio: " + e.getMessage());
 		}
 	}
 
 	private static void actualizarHabitacion(Habitacion habitacion) {
-		System.out.println("Habitación actualizada:");
-		System.out.println("ID: " + habitacion.getId());
-		System.out.println("Consumption record: " + habitacion.getConsumptionRecord());
+		//System.out.println("Habitación actualizada:");
+		//System.out.println("ID: " + habitacion.getId());
+		//System.out.println("Consumption record: " + habitacion.getConsumptionRecord());
 	}
 
 }

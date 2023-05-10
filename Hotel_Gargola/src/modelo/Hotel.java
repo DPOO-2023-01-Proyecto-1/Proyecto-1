@@ -47,7 +47,7 @@ public class Hotel {
 																						// las habitaciones
 		try (BufferedReader brHabitaciones = new BufferedReader(new FileReader("./data/habitaciones.txt"))) {
 			String linea = "";
-			//System.out.println("Se empezaron a cargar las habitaciones");// Noticia de que se empezó a cargar la
+			////System.out.println("Se empezaron a cargar las habitaciones");// Noticia de que se empezó a cargar la
 																			// habitación. Es necesario quitarlo después
 			while ((linea = brHabitaciones.readLine()) != null) {
 				String[] partes = linea.split(";"); // Separa la linea por los ;
@@ -66,7 +66,7 @@ public class Hotel {
 				for (int i = 0; i < partesAvailableServices.length; i++) // Este for lo que hace es agregar las partes
 																			// del availables services en una lista.
 				{
-					// System.out.println(partesAvailableServices[i]);//se habia agregado esto para
+					// //System.out.println(partesAvailableServices[i]);//se habia agregado esto para
 					// ensayar
 					listaAvailableServices.add(partesAvailableServices[i]);
 				}
@@ -81,7 +81,7 @@ public class Hotel {
 				for (int j = 0; j < partesConsumption.length; j++) // Este for lo que hace es agregar las partes del
 																	// consumption record a una lista.
 				{
-					// System.out.println(partesConsumption[j]);//se habia agregado esto para
+					// //System.out.println(partesConsumption[j]);//se habia agregado esto para
 					// ensayar
 					listaConsumptionRecord.add(partesConsumption[j]);
 				}
@@ -93,7 +93,7 @@ public class Hotel {
 																	// lista de huespedes y lo va a agregar en un
 																	// arraylist que la array va a tener puros strings
 				{
-					// System.out.println(partesHuespedes[d]); //se habia agregado esto para ensayar
+					// //System.out.println(partesHuespedes[d]); //se habia agregado esto para ensayar
 					listaHuespedes.add(partesHuespedes[d]);
 				}
 
@@ -117,7 +117,7 @@ public class Hotel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("Se cargaron las habitaciones");
+		////System.out.println("Se cargaron las habitaciones");
 	}
 
 	public static void cargarProductos() throws FileNotFoundException, IOException {// Función que va a crear un hash
@@ -127,7 +127,7 @@ public class Hotel {
 																					// está en la carpeta de data
 		try (BufferedReader brProductos = new BufferedReader(new FileReader("./data/productos.txt"))) {
 			String linea = "";
-			//System.out.println("Se empezaron a cargar los productos");
+			////System.out.println("Se empezaron a cargar los productos");
 			while ((linea = brProductos.readLine()) != null) {
 				String[] partes = linea.split(";"); // Separa la linea por los ;
 				int productId = Integer.parseInt(partes[0]);
@@ -144,7 +144,7 @@ public class Hotel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("Se cargaron los productos");
+		////System.out.println("Se cargaron los productos");
 	}
 
 	public static void cargarServicios() throws FileNotFoundException, IOException {// Función que va a crear un hash
@@ -154,7 +154,7 @@ public class Hotel {
 																					// está en la carpeta de data
 		try (BufferedReader brServicios = new BufferedReader(new FileReader("./data/servicios.txt"))) {
 			String linea = "";
-			//System.out.println("Se empezaron a cargar los servicios");
+			////System.out.println("Se empezaron a cargar los servicios");
 			while ((linea = brServicios.readLine()) != null) {
 				String[] partes = linea.split(";"); // Separa la linea por los ;
 				int serviceId = Integer.parseInt(partes[0]);
@@ -171,11 +171,11 @@ public class Hotel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("Se cargaron los servicios");
+		////System.out.println("Se cargaron los servicios");
 	}
 
 	public static void cargarReservas() throws FileNotFoundException, IOException {
-		//System.out.println("Se empezaron a cargar las reservas");
+		////System.out.println("Se empezaron a cargar las reservas");
 		try (BufferedReader brReservas = new BufferedReader(new FileReader("./data/reservas.txt"))) {
 			String linea = "";
 			while ((linea = brReservas.readLine()) != null) {
@@ -212,13 +212,13 @@ public class Hotel {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//System.out.println("Se cargaron las reservas");
+		////System.out.println("Se cargaron las reservas");
 	}
 
 	public static void cargarUsuarios() throws FileNotFoundException, IOException {
 		try (BufferedReader brUsuarios = new BufferedReader(new FileReader("./data/usuarios.txt"))) {
 			String linea = "";
-			//System.out.println("Se empezaron a cargar los usuarios");
+			////System.out.println("Se empezaron a cargar los usuarios");
 			while ((linea = brUsuarios.readLine()) != null) {
 				String[] partes = linea.split(";"); // Separa la linea por los ;
 				String login = partes[0];
@@ -239,7 +239,7 @@ public class Hotel {
 				}
 			}
 		}
-		//System.out.println("Se cargaron los usuarios");
+		////System.out.println("Se cargaron los usuarios");
 	}
 
 	public static void mostrarProductos() throws FileNotFoundException, IOException {
@@ -248,7 +248,7 @@ public class Hotel {
 		while ((linea = brProductos.readLine()) != null) {
 			String[] partes = linea.split(";"); // Separa la linea por los ;
 			String paraMostrar = partes[0] + ". " + partes[1] + ". " + partes[2] + ". " + partes[3];
-			System.out.println(paraMostrar);
+			//System.out.println(paraMostrar);
 		}
 	}
 
@@ -258,7 +258,7 @@ public class Hotel {
 		while ((linea = brServicios.readLine()) != null) {
 			String[] partes = linea.split(";"); // Separa la linea por los ;
 			String paraMostrar = partes[0] + ". " + partes[1] + ". " + partes[2] + ". " + partes[3];
-			System.out.println(paraMostrar);
+			//System.out.println(paraMostrar);
 		}
 	}
 	
