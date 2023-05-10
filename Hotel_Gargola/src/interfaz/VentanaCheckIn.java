@@ -125,7 +125,7 @@ public	VentanaCheckIn(VentanaRecepcionista vRecepcionista1)
 			associatedValueField.setText("");
 			guestListField.setText("");
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros",
+			JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros"+ex.getMessage(),
 					"Error de formato", JOptionPane.ERROR_MESSAGE);
 		} catch (Exception ex) {
 			JOptionPane.showMessageDialog(null, "Error al hacer Check-In: " + ex.getMessage(),

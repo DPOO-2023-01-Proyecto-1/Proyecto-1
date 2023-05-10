@@ -81,20 +81,20 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 	        Integer bookingID = Integer.parseInt(entryDate);
 	        String archivo = "./data/huespedes.txt";
 	        String archivo2 = "./data/reservas.txt";
-	        Recepcionista.checkOut(bookingID, archivo, archivo2);
+	        Recepcionista.checkOut(bookingID, archivo2, archivo);
 	        checkout = true;
 			bookingIdField.setText("");
 
 		} catch (NumberFormatException ex) {
-			JOptionPane.showMessageDialog(null, "Los valores de precio e ID deben ser números enteros",
+			JOptionPane.showMessageDialog(null, "error "+ex.getMessage(),
 					"Error de formato", JOptionPane.ERROR_MESSAGE);
 		} catch (Exception ex) {
-			JOptionPane.showMessageDialog(null, "Error al hacer Check-In: " + ex.getMessage(),
+			JOptionPane.showMessageDialog(null, "Error al hacer Check-out: " + ex.getMessage(),
 					"Error de aplicación", JOptionPane.ERROR_MESSAGE);
 		}
 
 		if (checkout) {
-			JOptionPane.showMessageDialog(null, "Ha completado el Check-In exitosamente", "Mensaje de Aprobación",
+			JOptionPane.showMessageDialog(null, "Ha completado el Check-out exitosamente", "Mensaje de Aprobación",
 					JOptionPane.INFORMATION_MESSAGE);
 		}
 	}
