@@ -139,6 +139,7 @@ public class Recepcionista extends Usuario {
 	                    if (!partesReserva[4].equals(bookingIdHuesped)) {
 	                        lineasHuespedes.add(lineaHuesped);
 	                    } else {
+	                    	
 	                        // Si el huésped está asociado a la reserva que se va a eliminar, liberar la habitación
 	                        
 	                    }

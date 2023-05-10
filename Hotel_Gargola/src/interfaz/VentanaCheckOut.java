@@ -30,6 +30,7 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 		frame.setTitle("Hacer Check out");
 		frame.setSize(new Dimension(750,750));
 		
+		
 		// Campos de texto para ingresar los datos de la reserva
 	    JPanel Panel = new JPanel(new GridLayout(1, 2));
 

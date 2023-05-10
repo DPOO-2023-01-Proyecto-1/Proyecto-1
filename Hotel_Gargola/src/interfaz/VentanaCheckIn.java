@@ -28,7 +28,6 @@ public class VentanaCheckIn extends JFrame implements ActionListener{
 	JTextField associatedValueField;
 	JTextField archivoField;
 	
-	
 	JFrame frame = new JFrame();
 	JButton regresar;
 	JButton hacerCheckIn;
