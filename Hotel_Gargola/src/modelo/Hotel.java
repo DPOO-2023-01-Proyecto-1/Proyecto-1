@@ -81,8 +81,7 @@ public class Hotel {
 				for (int j = 0; j < partesConsumption.length; j++) // Este for lo que hace es agregar las partes del
 																	// consumption record a una lista.
 				{
-					// //System.out.println(partesConsumption[j]);//se habia agregado esto para
-					// ensayar
+					
 					listaConsumptionRecord.add(partesConsumption[j]);
 				}
 
@@ -93,7 +92,7 @@ public class Hotel {
 																	// lista de huespedes y lo va a agregar en un
 																	// arraylist que la array va a tener puros strings
 				{
-					// //System.out.println(partesHuespedes[d]); //se habia agregado esto para ensayar
+
 					listaHuespedes.add(partesHuespedes[d]);
 				}
 
@@ -101,15 +100,78 @@ public class Hotel {
 				int guestCapacity = Integer.parseInt(partes[6]);
 				String roomType = partes[7];
 				int totalValue = Integer.parseInt(partes[8]);
+				//---------ACTUALIZACION PROYECTO 3--------------//
+				int roomSize = Integer.parseInt(partes[9]);
+				Boolean aireAcondicionado = true;
+				if (partes[10]=="false")
+				{
+					aireAcondicionado = false;
+				}
+				Boolean calefaccion = true;
+				if (partes[11]=="false")
+				{
+					calefaccion = false;
+				}
+				String bedSize = partes[12];
+				Boolean tieneTV = true;
+				if (partes[13]=="false")
+				{
+					tieneTV = false;
+				}
+				Boolean tieneCafetera = true;
+				if (partes[14]=="false")
+				{
+					tieneCafetera = false;
+				}
+				Boolean tieneRopaCama = true;
+				if (partes[15]=="false")
+				{
+					tieneRopaCama = false;
+				}
+				Boolean tienePlancha = true;
+				if (partes[16]=="false")
+				{
+					tienePlancha = false;
+				}
+				Boolean tieneSecador = true;
+				if (partes[17]=="false")
+				{
+					tieneSecador = false;
+				}
+				Boolean tieneVoltaje = true;
+				if (partes[18]=="false")
+				{
+					tieneVoltaje = false;
+				}
+				Boolean tieneTipoA = true;
+				if (partes[19]=="false")
+				{
+					tieneTipoA = false;
+				}
+				Boolean tieneTipoC = true;
+				if (partes[20]=="false")
+				{
+					tieneTipoC = false;
+				}
+				Boolean tieneDesayuno = true;
+				if (partes[21]=="false")
+				{
+					tieneDesayuno = false;
+				}
+				
+				
+				
+				
+				
 				Habitacion habitacion = mapaHabitaciones.get(roomId);// Aqui lo que s e queire hacer es checkear si la
 																		// habitación si existe y si no existe pues se
 																		// crea una nueva y sale mi farafafá
 				if (habitacion == null) {
 					habitacion = new Habitacion(roomId, occupancyStatus, listaAvailableServices, listaConsumptionRecord,
-							listaHuespedes, valueByNight, guestCapacity, roomType, totalValue);// toca ensayar si si
-																								// funciona el id en
-																								// integer como key del
-																								// hashmap
+							listaHuespedes, valueByNight, guestCapacity, roomType, totalValue, roomSize, aireAcondicionado, 
+							calefaccion, bedSize, tieneTV, tieneCafetera, tieneRopaCama, tienePlancha, tieneSecador, tieneVoltaje,
+							tieneTipoA, tieneTipoC, tieneDesayuno);
+																							
 					mapaHabitaciones.put(roomId, habitacion);
 				}
 			}

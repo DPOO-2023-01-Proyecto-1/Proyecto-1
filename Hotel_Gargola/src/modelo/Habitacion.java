@@ -25,10 +25,26 @@ public class Habitacion
 	private Integer guestCapacity;
 	private String roomType;
 	private Integer totalValue;
+	//-----------ACTUALIZACION PROYECTO 3-----------//
+	private Integer roomSize; //ahí se guarda el tamaño de la habitación en metros cuadrados
+	private Boolean tieneAireAcondicionado;
+	private Boolean tieneCalefaccion;
+	private String  bedSize; //dice si la cama es grande, pequeña o mediana
+	private Boolean tieneTv;
+	private Boolean tieneCafetera;
+	private Boolean tieneRopaCama;
+	private Boolean tienePlancha;
+	private Boolean tieneSecador;
+	private Boolean tieneVoltaje;
+	private Boolean tieneTipoA;
+	private Boolean tieneTipoC;
+	private Boolean tieneDesayuno;
 	
 	
 
-	public Habitacion(Integer roomId, Boolean occupancyStatus, ArrayList<String> availableServices, ArrayList<String> consumptionRecord, ArrayList<String> guestList, Integer valueByNight, Integer guestCapacity, String roomType, Integer totalValue) 
+	public Habitacion(Integer roomId, Boolean occupancyStatus, ArrayList<String> availableServices, ArrayList<String> consumptionRecord, ArrayList<String> guestList, Integer valueByNight, Integer guestCapacity, String roomType, Integer totalValue,
+			Integer roomSize, Boolean aireAcondicionado, Boolean calefaccion, String bedSize, Boolean tieneTv, Boolean tieneCafetera, Boolean tieneRopaCama, Boolean tienePlancha,
+			Boolean tieneSecador, Boolean tieneVoltaje, Boolean tieneTipoA, Boolean tieneTipoC, Boolean tieneDesayuno) 
 	{
 		this.roomId = roomId;
 		this.occupancyStatus = occupancyStatus;
@@ -39,6 +55,22 @@ public class Habitacion
 		this.guestCapacity = guestCapacity;
 		this.roomType = roomType;
 		this.totalValue = totalValue;
+		//-----------ACTUALIZACION PROYECTO 3-----------//
+		this.roomSize = roomSize;
+		this.tieneAireAcondicionado = aireAcondicionado;
+		this.tieneCalefaccion = calefaccion;
+		this.bedSize = bedSize;
+		this.tieneTv = tieneTv;
+		this.tieneCafetera = tieneCafetera;
+		this.tieneRopaCama = tieneRopaCama;
+		this.tienePlancha = tienePlancha;
+		this.tieneSecador = tieneSecador;
+		this.tieneVoltaje = tieneVoltaje;
+		this.tieneTipoA = tieneTipoA;
+		this.tieneTipoC = tieneTipoC;
+		this.tieneDesayuno = tieneDesayuno;
+		
+		
 	}
 	public int getId()
 	{
