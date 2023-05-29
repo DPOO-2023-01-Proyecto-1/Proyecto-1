@@ -143,7 +143,9 @@ public class VentanaAgregarHabitacion extends JFrame implements ActionListener{
 	                roomAvailableServices.setText("");
 	                roomType.setText("");
 	            } else {
+	            	/*
 	                Administrador.addRoom(mapaHabitaciones, intIdRoom, intPriceByNightRoom, typeRoom, intGuestCapacityRoom, avaibleServicesRoom, archivo);
+	                */
 	                HabitacionAgregada = true;
 	                roomID.setText("");
 	                roomValueByNight.setText("");

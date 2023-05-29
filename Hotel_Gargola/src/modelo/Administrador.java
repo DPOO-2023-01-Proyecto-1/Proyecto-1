@@ -398,7 +398,7 @@ public class Administrador extends Usuario {
 	}
 }
 
-
+	/*
 	public static void addRoom(Map<Integer, Habitacion> rooms, int roomId, int valueByNight, String roomType,
 			int guestCapacity, String availableServices, String filePath) throws IOException {
 		// Convierte el String de servicios en una lista de Strings
@@ -422,6 +422,7 @@ public class Administrador extends Usuario {
 		writer.newLine();
 		writer.close();
 	}
+	*/
 
 	public void deleteRoom(Integer roomId, Map<Integer, Habitacion> habitaciones, String rutaArchivo)
 			throws IOException {

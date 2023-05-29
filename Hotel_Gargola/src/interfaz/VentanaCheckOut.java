@@ -22,6 +22,8 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 	JTextField bookingIdField ;
 	JButton regresar;
 	JButton hacerCheckOut;
+	JButton pagar;
+	JPanel panelSur = new JPanel();;
 	VentanaRecepcionista vRecepcionista;
 	
 	VentanaCheckOut(VentanaRecepcionista vRecepcionista1)
@@ -29,7 +31,7 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 		vRecepcionista = vRecepcionista1;
 		frame.setTitle("Hacer Check out");
 		frame.setSize(new Dimension(750,750));
-		
+		panelSur.setLayout(new GridLayout(2,1));
 		
 		// Campos de texto para ingresar los datos de la reserva
 	    JPanel Panel = new JPanel(new GridLayout(1, 2));
@@ -42,19 +44,25 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 		
 		
 		//------------CUADRAR LABEL------------//
+	    
 		regresar =  new JButton("Regresar");
 		hacerCheckOut = new JButton("Hacer CheckOut");
+		pagar = new JButton("Pagar");
 		
 		//---------ACTIONS LISTENERS-----------//
+		pagar.addActionListener(this);
 		regresar.addActionListener(this);
 		hacerCheckOut.addActionListener(this);
 		
-		
+		panelSur.add(pagar);
+		panelSur.add(regresar);
+
 		
 		
 		
 		//--------------ADDERS----------//
-		frame.add(regresar, BorderLayout.SOUTH);
+		frame.add(panelSur, BorderLayout.SOUTH);
+
 		frame.add(hacerCheckOut, BorderLayout.WEST);
 		frame.add(Panel);
 		
@@ -72,6 +80,11 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 			
 			vRecepcionista.getFrameRecepcionista().setVisible(true);
 			frame.dispose();
+		}
+		if (e.getSource()==pagar)
+		{
+			VentanaPagos vPagos = new VentanaPagos(this);
+			frame.setVisible(false);
 		}
 		
 		else if (e.getSource()==hacerCheckOut) {
