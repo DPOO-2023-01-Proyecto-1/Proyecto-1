@@ -1,3 +1,4 @@
 manuelito;asdf;administrador
 andresito;asdf;recepcionista
 pepito;asdf;empleado
+usuario;asdf;cliente

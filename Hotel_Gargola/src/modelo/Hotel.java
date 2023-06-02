@@ -23,6 +23,7 @@ import modelo.Usuario;
 import modelo.Administrador;
 import modelo.Empleado;
 import modelo.Recepcionista;
+import modelo.Cliente;
 
 public class Hotel {
 	private static Map<Integer, Habitacion> mapaHabitaciones = new LinkedHashMap<>();// 
@@ -297,6 +298,10 @@ public class Hotel {
 						usuario = new Empleado(login, password, userType); // si no es recepcionista ni admin pues es un
 																			// empleado añañay
 					}
+					else if (userType.equals("cliente")) {
+						usuario = new Cliente(login, password, userType); 
+					}
+
 					mapaUsuarios.put(login, usuario);
 				}
 			}
