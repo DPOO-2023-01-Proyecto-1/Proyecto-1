@@ -29,7 +29,7 @@ public class VentanaCliente extends JFrame implements ActionListener {
 	VentanaCliente()
 	{
 		frame.setSize(750,750);
-		frame.setTitle("Ventana Administrador");
+		frame.setTitle("Ventana Cliente");
 		panelBotones.setLayout(new GridLayout(2,1));
 		panelBotones.setBounds(375, 375, 300, 200); //creo que esto no está haciendo ni mierda
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
