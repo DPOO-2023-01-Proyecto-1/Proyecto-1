@@ -61,6 +61,36 @@ public class Empleado extends Usuario
 			Files.write(Paths.get(archivo), lineas, Charset.defaultCharset());
 
 			//System.out.println("Producto agregado exitosamente.");
+			
+			//------------PARA GRAFICAS DE CANTIDAD DE PRODUCTOS----------//
+		
+
+			String archivoProductos = "./data/productos.txt";
+			List<String> lineasProducto = Files.readAllLines(Paths.get(archivoProductos), Charset.defaultCharset());
+			boolean encontradoProducto = false;
+			for (int i = 0; i < lineasProducto.size(); i++) {
+				
+				String linea = lineasProducto.get(i);
+				String[] elementosProductos = linea.split(";");
+				System.out.println(elementosProductos[0]);
+
+				// Si se encuentra la linea correspondiente al ID buscado
+				if (Integer.parseInt(elementosProductos[0])==Integer.parseInt(nuevoProducto)) {
+					encontradoProducto = true;
+
+					int numeroProductoVendidos = Integer.parseInt(elementosProductos[4])+1;
+					elementosProductos[4]= Integer.toString(numeroProductoVendidos);
+
+					// Actualiza la línea en la lista
+					linea = String.join(";", elementosProductos);
+					lineasProducto.set(i, linea);
+					System.out.println("aqui pasó algo");
+					break; // Termina el bucle porque ya se actualizó la línea correspondiente
+				}
+			}
+			Files.write(Paths.get(archivoProductos), lineasProducto, Charset.defaultCharset());
+			
+			
 		} catch (IOException e) {
 			//System.out.println("Error al agregar el producto: " + e.getMessage());
 		}
@@ -109,7 +139,32 @@ public class Empleado extends Usuario
 
 			// Escribe todas las lineas actualizadas al archivo
 			Files.write(Paths.get(archivo), lineas, Charset.defaultCharset());
+			
+			//----------FUNCION GRAFICAS DE SERVICIOS ---------//
+			String archivoServicios = "./data/servicios.txt";
+			List<String> lineasServicio = Files.readAllLines(Paths.get(archivoServicios), Charset.defaultCharset());
+			boolean encontradoProducto = false;
+			for (int i = 0; i < lineasServicio.size(); i++) {
+				
+				String linea = lineasServicio.get(i);
+				String[] elementosServicios = linea.split(";");
+				System.out.println(elementosServicios[0]);
 
+				// Si se encuentra la linea correspondiente al ID buscado
+				if (Integer.parseInt(elementosServicios[0])==Integer.parseInt(nuevoServicio)) {
+					encontradoProducto = true;
+
+					int numeroProductoVendidos = Integer.parseInt(elementosServicios[4])+1;
+					elementosServicios[4]= Integer.toString(numeroProductoVendidos);
+
+					// Actualiza la línea en la lista
+					linea = String.join(";", elementosServicios);
+					lineasServicio.set(i, linea);
+
+					break; // Termina el bucle porque ya se actualizó la línea correspondiente
+				}
+			}
+			Files.write(Paths.get(archivoServicios), lineasServicio, Charset.defaultCharset());
 			//System.out.println("Servicio agregado exitosamente.");
 		} catch (IOException e) {
 			//System.out.println("Error al agregar el servicio: " + e.getMessage());

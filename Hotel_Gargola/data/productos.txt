@@ -1,13 +1,13 @@
-301;Palito de queso;2500;Sin restricción
-302;Cerveza;4500;Sin restricción
-303;Agua mineral;2000;Sin restricción
-304;Pizza;10000;Sin restricción
-306;Ensalada;7000;Sin restricción
-307;Sandwich;5000;Sin restricción
-308;Helado;3500;Sin restricción
-310;Gaseosas saborizadas;3500;Sin restricción
-311;Café;3000;Sin restricción
-312;Té;2500;Sin restricción
-313;Jugo natural;4000;Sin restricción
-314;Vino;20000;Sin restricción
-315;Cócteles;12000;Habitacion
+301;Palito de queso;2500;Sin restricción;1
+302;Cerveza;4500;Sin restricción;0
+303;Agua mineral;2000;Sin restricción;0
+304;Pizza;10000;Sin restricción;0
+306;Ensalada;7000;Sin restricción;0
+307;Sandwich;5000;Sin restricción;0
+308;Helado;3500;Sin restricción;0
+310;Gaseosas saborizadas;3500;Sin restricción;0
+311;Café;3000;Sin restricción;0
+312;Té;2500;Sin restricción;0
+313;Jugo natural;4000;Sin restricción;0
+314;Vino;20000;Sin restricción;0
+315;Cócteles;12000;Habitacion;0
