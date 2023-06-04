@@ -10,4 +10,4 @@
 312;Té;2500;Sin restricción;0
 313;Jugo natural;4000;Sin restricción;0
 314;Vino;20000;Sin restricción;0
-315;Cócteles;12000;Habitacion;0
+315;Cócteles;12000;Habitacion;1
