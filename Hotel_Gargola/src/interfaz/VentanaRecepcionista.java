@@ -97,8 +97,10 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 		if(e.getSource()==eServicios)
 		{
 			VEstadisticasServicios vServicios = null;
+			VServiciosPrecios vServiciosPrecios = null;
 			try {
 				vServicios = new VEstadisticasServicios("Estadisticas de servicios", "Estadisticas de servicios");
+				vServiciosPrecios = new VServiciosPrecios("Estadisticas de precios de productos", "Estadisticas de precios de productos");
 			} catch (NumberFormatException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -108,13 +110,17 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 			}
 			vServicios.pack();
 			vServicios.setVisible(true);
+			vServiciosPrecios.pack();
+			vServiciosPrecios.setVisible(true);
 		}
 
 		if(e.getSource()==eProductos)
 		{
 			VEstadisticasProductos vProductos = null;
+			VEstadisticasProductosPrecios vProductosPrecios = null;
 			try {
 				vProductos = new VEstadisticasProductos("Estadisticas de productos", "Estadisticas de productos");
+				vProductosPrecios = new VEstadisticasProductosPrecios("Estadisticas de precios de productos", "Estadisticas de precios de productos");
 			} catch (NumberFormatException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
@@ -124,6 +130,8 @@ public class VentanaRecepcionista extends JFrame implements ActionListener {
 			}
 			vProductos.pack();
 			vProductos.setVisible(true);
+			vProductosPrecios.pack();
+			vProductosPrecios.setVisible(true);
 		}
 
 		
