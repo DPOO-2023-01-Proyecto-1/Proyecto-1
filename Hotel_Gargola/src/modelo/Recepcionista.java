@@ -94,6 +94,7 @@ public class Recepcionista extends Usuario {
             System.out.println("Error al guardar la reserva en el archivo "+ Archivo);
             e.printStackTrace();
         }
+        
     }
 	
 	public static void generateBill(String archivoReservas, String bookingId, JTextArea textArea) {

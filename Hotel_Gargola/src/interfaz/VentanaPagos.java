@@ -32,6 +32,7 @@ public class VentanaPagos extends JFrame implements ActionListener {
     JTextArea textArea = new JTextArea();
     
 
+    
     VentanaPagos(VentanaCheckOut vCheckOut1) {
         vCheckOut = vCheckOut1;
         frame.setTitle("Pagos");
