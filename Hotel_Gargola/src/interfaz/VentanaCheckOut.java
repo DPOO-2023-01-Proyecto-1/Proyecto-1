@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -113,5 +114,9 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 		}
 	}
 }
+	public JFrame getFrameCheckOut()
+	{
+		return frame;
+	}
 
 }

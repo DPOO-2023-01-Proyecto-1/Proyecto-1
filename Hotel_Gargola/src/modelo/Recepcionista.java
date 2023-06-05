@@ -93,11 +93,56 @@ public class Recepcionista extends Usuario {
         }
     }
 	
-	public void generateBill() {
-		
-		
-		
+	public static void generateBill(String archivoReservas, Integer bookingId) {
+	    try {
+	        FileReader frReservas = new FileReader(archivoReservas);
+	        BufferedReader brReservas = new BufferedReader(frReservas);
+	        String lineaReserva;
+	        while ((lineaReserva = brReservas.readLine()) != null) {
+	            String[] partesReserva = lineaReserva.split(";");
+	            Integer id = Integer.parseInt(partesReserva[0]);
+	            if (id.equals(bookingId)) {
+	                String[] fechas = partesReserva[1].split(";");
+	                String[] fechas2 = partesReserva[2].split(";");
+	                ArrayList<Integer> habitaciones = new ArrayList<>();
+	                String[] habitacionesArray = partesReserva[3].replace("[", "").replace("]", "").split(",");
+	                for (String h : habitacionesArray) {
+	                    habitaciones.add(Integer.parseInt(h.trim()));
+	                }
+	                ArrayList<String> invitados = new ArrayList<>();
+	                String[] invitadosArray = partesReserva[4].replace("[", "").replace("]", "").split(",");
+	                for (String i : invitadosArray) {
+	                    invitados.add(i.trim());
+	                }
+	                Integer valorAsociado = Integer.parseInt(partesReserva[5]);
+
+	                System.out.println("Información de la reserva:");
+	                System.out.println("ID de reserva: " + id);
+	                System.out.println("Fechas de entrada: " + fechas[0]);
+	                System.out.println("Fechas de salida: " + fechas2[0]);
+	                System.out.println("Habitaciones asociadas: " + habitaciones.toString());
+	                System.out.println("Huéspedes: " + invitados.toString());
+	                System.out.println("Valor asociado: " + valorAsociado);
+
+	                // Calcula y muestra el valor total de la reserva en función de las habitaciones y los servicios adicionales
+	                int totalValue = valorAsociado; // Inicialmente se considera solo el valor asociado
+	                // Aquí puedes agregar la lógica para calcular el valor total de la reserva
+	                // Puedes tener en cuenta los precios de las habitaciones y los servicios adicionales
+	                // y sumarlos al valor asociado
+
+	                System.out.println("Valor total: " + totalValue);
+	                break; // Termina el bucle después de encontrar la reserva con el ID correspondiente
+	            }
+	        }
+	        brReservas.close();
+	    } catch (FileNotFoundException e) {
+	        System.out.println("No se encontró el archivo " + archivoReservas);
+	    } catch (IOException e) {
+	        System.out.println("Error al leer el archivo " + archivoReservas);
+	        e.printStackTrace();
+	    }
 	}
+
 	
 	public static void checkOut(Integer bookingId, String archivoReservas, String huespedesArchivo) {
 	    try {
