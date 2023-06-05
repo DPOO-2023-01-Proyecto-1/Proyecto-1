@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Reserva 
 {
-	private Integer bookingId;
+	private static Integer bookingId;
 	private String entryDate;
 	private String departureDate;
 	public ArrayList<Integer> associatedRooms;
@@ -13,7 +13,7 @@ public class Reserva
 	
 	public  Reserva(Integer bookingId, String entryDate, String departureDate, ArrayList<Integer> associatedRooms, ArrayList<String> guestList, Integer associatedValue)
 	{
-		this.bookingId = bookingId;
+		Reserva.bookingId = bookingId;
 		this.entryDate = entryDate;
 		this.departureDate = departureDate;
 		this.associatedRooms = associatedRooms;
@@ -47,7 +47,7 @@ public class Reserva
 	{
 		return associatedRooms;
 	}
-	public Integer getBookingId()
+	public static Integer getBookingId()
 	{
 		return bookingId;
 	}

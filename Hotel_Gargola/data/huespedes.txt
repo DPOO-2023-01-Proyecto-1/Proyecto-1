@@ -7,4 +7,3 @@
 624;manuel;12;manuelito12@uniandes.com;0;0354;pepe guardiola;56;pepguardia@uniandes.edu.co;0;0
 50;pepe gomez;15;pepe@siseñor.com;0;0
 343;carlos;59;carlos@uniandes.com;0;0
-331;cabrita;22;cabra123@uniandes.edi.co;0;0
