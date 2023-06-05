@@ -32,6 +32,11 @@ public class PanelLoginUsuario extends JPanel implements ActionListener
 	private JButton bCrearUsuario;
 	private VInicioUsuario vInicio;
 	
+	
+	
+	
+	
+	
 
 
 	public PanelLoginUsuario(VInicioUsuario vInicio2)
@@ -67,6 +72,11 @@ public class PanelLoginUsuario extends JPanel implements ActionListener
 		
 	
 	}
+	
+	public boolean compararMontoTotal(double valorReservacion, double montoTotalCuenta) {
+	        return montoTotalCuenta >= valorReservacion;
+	    }
+	
 	@Override //aqui si es necesario tener el action performed o que 
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub

@@ -1,0 +1,4 @@
+Nequi
+Paypal
+Tarjeta
+MercadoPago

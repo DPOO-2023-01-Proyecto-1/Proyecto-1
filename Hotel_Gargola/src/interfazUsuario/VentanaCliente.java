@@ -24,29 +24,38 @@ public class VentanaCliente extends JFrame implements ActionListener {
 	JPanel panelBotones = new JPanel();
 	JButton bVerReservas;
 	JButton bVHacerReserva;
+	JButton bVCargarMetodosDePago;
+	
 	
 	
 	VentanaCliente()
 	{
 		frame.setSize(750,750);
 		frame.setTitle("Ventana Cliente");
-		panelBotones.setLayout(new GridLayout(2,1));
-		panelBotones.setBounds(375, 375, 300, 200); //creo que esto no está haciendo ni mierda
+		panelBotones.setLayout(new GridLayout(2,2));
+		//panelBotones.setBounds(375, 375, 300, 200); 
 		frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		
 		//----- INICIA BOTONES PANEL-------//
+		
 		bVerReservas = new JButton("Ver reservas disponibles");
-		bVHacerReserva= new JButton("Hacer reserva");
+		bVHacerReserva = new JButton("Hacer reserva");
+		bVCargarMetodosDePago = new JButton("Cargar metodos de pago");
 		
 		
 		//------ADDS ACTION LISTENER BOTONES---------//
+		
 		bVerReservas.addActionListener(this);
 		bVHacerReserva.addActionListener(this);
-		
+		bVCargarMetodosDePago.addActionListener(this);
+		;
 		
 		
 		//------AGREGA AL PANEL-------//
 		panelBotones.add(bVerReservas);
 		panelBotones.add(bVHacerReserva);
+		panelBotones.add(bVCargarMetodosDePago);
+		
 		
 		
 		
@@ -55,11 +64,12 @@ public class VentanaCliente extends JFrame implements ActionListener {
 		frame.add(panelBotones, BorderLayout.CENTER);
 		
 		
-		
-		
+	
 		
 		frame.setVisible(true);
 	}
+	
+	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource()==bVerReservas)
@@ -70,6 +80,11 @@ public class VentanaCliente extends JFrame implements ActionListener {
 		else if (e.getSource() == bVHacerReserva) 
 		{
 			VentanaHacerReservas vHacerReservas = new VentanaHacerReservas(this);
+			frame.setVisible(false);
+		}
+		else if (e.getSource() == bVCargarMetodosDePago)
+		{
+			VentanaCargarMetodosDePago vCargarMetodosDePago = new VentanaCargarMetodosDePago(this);
 			frame.setVisible(false);
 		}
 		
