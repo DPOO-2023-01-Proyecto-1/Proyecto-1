@@ -81,6 +81,7 @@ public class VentanaPagos extends JFrame implements ActionListener {
 		}
     
 		
+		
 		if (e.getSource() == btnGenerarFactura) {
            boolean pago = false;
            

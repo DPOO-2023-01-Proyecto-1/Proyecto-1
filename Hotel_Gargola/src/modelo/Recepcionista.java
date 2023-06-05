@@ -49,6 +49,7 @@ public class Recepcionista extends Usuario {
                     Reserva booking = new Reserva(currentBookingId, entryDate, departureDate, associatedRooms, guestList, associatedValue);
                     bookingsList.add(booking);
                 }
+                
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo " + Archivo);
