@@ -76,37 +76,24 @@ public class VentanaPagos extends JFrame implements ActionListener {
 		}
     
 		
-		else if (e.getSource() == btnGenerarFactura) {
-            String bookingIdStr = txtBookingId.getText();
-            if (bookingIdStr.isEmpty()) {
-                JOptionPane.showMessageDialog(frame, "Por favor, ingrese el ID de reserva.");
-                return;
-            }
-
-            int bookingId;
-            try {
-                bookingId = Integer.parseInt(bookingIdStr);
-            } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(frame, "El ID de reserva debe ser un número entero.");
-                return;
-            }
-
-            ArrayList<Reserva> bookingsList = Recepcionista.getBookingsList("reservas.txt");
-            Reserva targetBooking = null;
-            for (Reserva booking : bookingsList) {
-                if (Reserva.getBookingId() == bookingId) {
-                    targetBooking = bookingId;
-                    break;
-                }
-            }
-
-            if (targetBooking != null) {
-                // Generar factura
-                void factura = Recepcionista.generateBill(bookingIdStr, null);
-
-                // Mostrar factura en un cuadro de diálogo
-                JOptionPane.showMessageDialog(frame, factura.toString(), "Factura de Reserva",
-                        JOptionPane.INFORMATION_MESSAGE);
+		if (e.getSource() == btnGenerarFactura) {
+           boolean pago = false;
+           
+           try {
+        	   String bookingId = txtBookingId.getText();
+        	   String archivo2 = "./data/reservas.txt";
+        	   Recepcionista.generateBill(archivo2, bookingId);
+        	   pago = true;
+        	   txtBookingId.setText("");
+        	   
+           }catch (NumberFormatException ex) {
+			JOptionPane.showMessageDialog(null, "error "+ex.getMessage(),
+					"Error de formato", JOptionPane.ERROR_MESSAGE);
+		} catch (Exception ex) {
+			JOptionPane.showMessageDialog(null, "Error al hacer Check-out: " + ex.getMessage(),
+					"Error de aplicación", JOptionPane.ERROR_MESSAGE);
+		}
+               
             } else {
                 JOptionPane.showMessageDialog(frame, "No se encontró ninguna reserva con el ID proporcionado.");
             }
@@ -114,4 +101,4 @@ public class VentanaPagos extends JFrame implements ActionListener {
     }
     
     
-}
+

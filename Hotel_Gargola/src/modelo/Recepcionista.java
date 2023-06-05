@@ -93,14 +93,14 @@ public class Recepcionista extends Usuario {
         }
     }
 	
-	public static void generateBill(String archivoReservas, Integer bookingId) {
+	public static void generateBill(String archivoReservas, String bookingId) {
 	    try {
 	        FileReader frReservas = new FileReader(archivoReservas);
 	        BufferedReader brReservas = new BufferedReader(frReservas);
 	        String lineaReserva;
 	        while ((lineaReserva = brReservas.readLine()) != null) {
 	            String[] partesReserva = lineaReserva.split(";");
-	            Integer id = Integer.parseInt(partesReserva[0]);
+	            String id = partesReserva[0];
 	            if (id.equals(bookingId)) {
 	                String[] fechas = partesReserva[1].split(";");
 	                String[] fechas2 = partesReserva[2].split(";");
