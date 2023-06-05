@@ -25,6 +25,7 @@ public class VentanaCheckOut extends JFrame implements ActionListener{
 	JButton hacerCheckOut;
 	JButton pagar;
 	JPanel panelSur = new JPanel();;
+	
 	VentanaRecepcionista vRecepcionista;
 	
 	VentanaCheckOut(VentanaRecepcionista vRecepcionista1)

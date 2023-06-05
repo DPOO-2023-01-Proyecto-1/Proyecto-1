@@ -32,6 +32,7 @@ public class PanelLogin extends JPanel implements ActionListener
 	private VentanaInicio vInicio;
 	
 
+	
 
 	public PanelLogin(VentanaInicio vInicio2)
 	{	

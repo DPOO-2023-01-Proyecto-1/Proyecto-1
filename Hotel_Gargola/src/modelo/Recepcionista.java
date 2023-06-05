@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+
+import javax.swing.JTextArea;
+
 import java.util.Random;
 
 public class Recepcionista extends Usuario {
@@ -46,6 +49,7 @@ public class Recepcionista extends Usuario {
                     Reserva booking = new Reserva(currentBookingId, entryDate, departureDate, associatedRooms, guestList, associatedValue);
                     bookingsList.add(booking);
                 }
+                
             }
         } catch (IOException e) {
             System.out.println("Error al leer el archivo " + Archivo);
@@ -91,9 +95,10 @@ public class Recepcionista extends Usuario {
             System.out.println("Error al guardar la reserva en el archivo "+ Archivo);
             e.printStackTrace();
         }
+        
     }
 	
-	public static void generateBill(String archivoReservas, String bookingId) {
+	public static void generateBill(String archivoReservas, String bookingId, JTextArea textArea) {
 	    try {
 	        FileReader frReservas = new FileReader(archivoReservas);
 	        BufferedReader brReservas = new BufferedReader(frReservas);
@@ -123,12 +128,21 @@ public class Recepcionista extends Usuario {
 	                System.out.println("Habitaciones asociadas: " + habitaciones.toString());
 	                System.out.println("Huéspedes: " + invitados.toString());
 	                System.out.println("Valor asociado: " + valorAsociado);
+	         
 
 	                // Calcula y muestra el valor total de la reserva en función de las habitaciones y los servicios adicionales
 	                int totalValue = valorAsociado; // Inicialmente se considera solo el valor asociado
 	                // Aquí puedes agregar la lógica para calcular el valor total de la reserva
 	                // Puedes tener en cuenta los precios de las habitaciones y los servicios adicionales
 	                // y sumarlos al valor asociado
+	                textArea.append("Información de la reserva:\n");
+	                textArea.append("ID de reserva: " + id + "\n");
+	                textArea.append("Fechas de entrada: " + fechas[0] + "\n");
+	                textArea.append("Fechas de salida: " + fechas2[0] + "\n");
+	                textArea.append("Habitaciones asociadas: " + habitaciones.toString() + "\n");
+	                textArea.append("Huéspedes: " + invitados.toString() + "\n");
+	                textArea.append("Valor asociado: " + valorAsociado + "\n");
+	                textArea.append("Valor total: " + totalValue + "\n");
 
 	                System.out.println("Valor total: " + totalValue);
 	                break; // Termina el bucle después de encontrar la reserva con el ID correspondiente
