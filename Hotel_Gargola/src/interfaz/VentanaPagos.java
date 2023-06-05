@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import modelo.Recepcionista;
@@ -27,12 +29,13 @@ public class VentanaPagos extends JFrame implements ActionListener {
     JTextField txtBookingId;
     JButton btnGenerarFactura;
     JButton btnRegresar;
+    JTextArea textArea = new JTextArea();
     
 
     VentanaPagos(VentanaCheckOut vCheckOut1) {
         vCheckOut = vCheckOut1;
         frame.setTitle("Pagos");
-        frame.setSize(new Dimension(400, 200));
+        frame.setSize(new Dimension(800, 800));
         
 
         // Crear panel principal
@@ -49,6 +52,7 @@ public class VentanaPagos extends JFrame implements ActionListener {
 
         // Agregar panel de formulario al panel principal
         panelPrincipal.add(panelFormulario, BorderLayout.CENTER);
+        panelPrincipal.add(new JScrollPane(textArea), BorderLayout.EAST);
 
         // Crear y agregar botón generar factura al panel principal
         btnGenerarFactura = new JButton("Generar Factura");
@@ -82,7 +86,8 @@ public class VentanaPagos extends JFrame implements ActionListener {
            try {
         	   String bookingId = txtBookingId.getText();
         	   String archivo2 = "./data/reservas.txt";
-        	   Recepcionista.generateBill(archivo2, bookingId);
+        	   Recepcionista.generateBill(archivo2, bookingId, textArea);
+        	   
         	   pago = true;
         	   txtBookingId.setText("");
         	   
